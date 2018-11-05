@@ -26,7 +26,7 @@ class Servers extends Controller
 {
 
     use SettingsHandler;
-    
+
 	protected $vultr;
 
     protected $plan;
@@ -40,7 +40,6 @@ class Servers extends Controller
     protected $app;
 
     protected $snapshot;
-
 
 	public function __construct( Server $vultr, 
 		Plan $plan,
@@ -72,7 +71,6 @@ class Servers extends Controller
 
 
     public function viewSettings( $serverid ){
-
 
         Activity::all()->last()->getExtraProperty('customProperty');
 
@@ -154,7 +152,11 @@ class Servers extends Controller
             // clear cache
             Cache::forget('backups'); Cache::forget('servers');
 
-            activity()->withProperties([ 'server_id' => $request->serverid ])->log( __( 'Enabling backups' ) );
+            activity()->withProperties([ 
+
+                'server_id' => $request->serverid
+
+            ])->log( __( 'Enable server backups' ) );
 
             return redirect()->route('servers.view.backups', ['serverid' => $request->serverid])->with( ['type' => 'success', 'message' => "Backups Enabled" ]);
             
@@ -191,7 +193,11 @@ class Servers extends Controller
             
             Cache::forget('servers');
 
-            activity()->withProperties([ 'server_id' => $request->subid ])->log( __( 'Schedule automatic backup' ) );
+            activity()->withProperties([
+
+                'server_id' => $request->subid 
+
+            ])->log( __( 'Schedule server automatic backup' ) );
 
             return redirect()->route('servers.view.backups', ['serverid' => $request->subid])->with( ['type' => 'success', 'message' => "Backup schedule updated" ]);
 
@@ -226,7 +232,11 @@ class Servers extends Controller
             
             Cache::forget('servers');
 
-            activity()->withProperties([ 'server_id' => $request->subid ])->log( __( 'Disabling backups' ) );
+            activity()->withProperties([ 
+
+                'server_id' => $request->subid
+
+            ])->log( __( 'Disable server backups' ) );
 
             return redirect()->route('servers.view.backups', ['serverid' => $request->subid])->with( ['type' => 'success', 'message' => "Backup disabled" ]);
 
@@ -295,7 +305,6 @@ class Servers extends Controller
      */
 
     public function start( Request $request )
-
     {
 
         $data = [
@@ -306,10 +315,13 @@ class Servers extends Controller
 
         if ( !isset( $destroyRes['error'] ) ) {
 
-            // clear cache
             Cache::forget('servers');
 
-            activity()->withProperties([ 'server_id' => $request->serverid ])->log( __( 'Starting server' ) );
+            activity()->withProperties([ 
+
+                'server_id' => $request->serverid
+
+            ])->log( __( 'Start server' ) );
 
             // redirect and flush session
 
@@ -329,7 +341,6 @@ class Servers extends Controller
     }
 
     public function halt( Request $request )
-
     {
 
     	$data = [
@@ -340,10 +351,13 @@ class Servers extends Controller
 
         if ( !isset( $destroyRes['error'] ) ) {
 
-            // clear cache
             Cache::forget('servers');
 
-            activity()->withProperties([ 'server_id' => $request->serverid ])->log( __( 'Stopping server' ) );
+            activity()->withProperties([
+
+                'server_id' => $request->serverid
+
+            ])->log( __( 'Stop server' ) );
 
             // redirect and flush session
             return redirect('servers')->with( ['type' => 'success', 'message' => "Server <strong>{$request->serverid}</strong> stopped" ]);
@@ -376,10 +390,13 @@ class Servers extends Controller
 
         if ( !isset( $destroyRes['error'] ) ) {
 
-            // clear cache
             Cache::forget('servers');
 
-            activity()->withProperties([ 'server_id' => $request->serverid ])->log( __( 'Reinstalling server' ) );
+            activity()->withProperties([ 
+
+                'server_id' => $request->serverid 
+
+            ])->log( __( 'Reinstall server' ) );
 
             // redirect and flush session
             return redirect('servers')->with( ['type' => 'success', 'message' => "Server <strong>{$request->serverid}</strong> reinstalled" ]);
@@ -414,7 +431,11 @@ class Servers extends Controller
 
             $user->notify( new ServerDestroyed( $request->serverid ) );
 
-            activity()->withProperties([ 'server_id' => $request->serverid ])->log( __( 'Destroying server' ) );
+            activity()->withProperties([
+
+                'server_id' => $request->serverid
+
+            ])->log( __( 'Destroy server' ) );
 
             // redirect and flush session
             return redirect('servers')->with( ['type' => 'success', 'message' => "Server <strong>{$request->serverid}</strong> destroyed" ]);
@@ -438,9 +459,9 @@ class Servers extends Controller
 
         $user = User::findOrFail( Auth::id() );
 
-    	//for ($i=0; $i < $request->deploy_quantity; $i++) {
-
+    	   //for ($i=0; $i < $request->deploy_quantity; $i++) {
     		$data = [
+
     		'DCID' => $request->dcid,
     		'VPSPLANID' => $request->serversize,
     		'OSID' => $request->servertype,
@@ -473,7 +494,6 @@ class Servers extends Controller
     		'FIREWALLGROUPID' => ($request->firewallgroupid == 'Select Firewall Group') ? null : $request->firewallgroupid,
     	];
 
-
     	$results = $this->vultr->create( array(), $data );
 
         if ( !in_array('error', $results ) && isset( $results['SUBID'] ) ) {
@@ -484,7 +504,12 @@ class Servers extends Controller
 
             // $user->notify( new ServerDeployed( $serverInfo ) );
 
-            activity()->withProperties([ 'server_id' => $results['SUBID'] ])->log( __( 'Deploying server' ) );
+            activity()->withProperties([
+
+                'server_id' => $results['SUBID'],
+                'label' => $request->serverlabel
+
+            ])->log( __( 'Deploy server' ) );
             
             return redirect('servers/'. $results['SUBID'] );
         }

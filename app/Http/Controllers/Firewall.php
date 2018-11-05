@@ -47,7 +47,11 @@ class Firewall extends Controller
             // clear cache
             Cache::forget('firewalls');
 
-            activity()->log( __( 'Deleting Firewall Group' ) );
+            activity()->withProperties([
+
+                'firewall_group_id' => $request->firewallgroupid
+
+            ])->log( __( 'Deleting Firewall Group' ) );
 
             // redirect and flush session
             return redirect('firewall')->with( ['type' => 'success', 'message' => 'Firewall group <strong>'.$request->firewallgroupid.'</strong> deleted' ]);
@@ -57,9 +61,7 @@ class Firewall extends Controller
             if (preg_match( '/response:\s(.*)/i', $destroyRes['error'], $matches) ) {
 
                 return redirect('firewall')->with( ['type' => 'error', 'message' => str_replace('response:', null, $matches[0] ) ] );
-
             }
-
         }
 
         return redirect('firewall')->with( ['type' => 'error', 'message' => $destroyRes['error'] ] );

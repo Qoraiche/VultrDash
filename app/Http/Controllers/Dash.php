@@ -20,15 +20,11 @@ class Dash extends Controller
 {
 
     protected $vultr;
-
     protected $os;
-
     protected $app;
-
     protected $account;
 
     public function __construct(Server $vultr,Os $os, App $app, VultrAccount $account)
-
     {
 
         $this->middleware('auth');
@@ -39,8 +35,7 @@ class Dash extends Controller
         $this->app = $app;
         $this->account = $account;
     }
-
-
+    
     public function activity(){
 
         $activity_chart_data = Activity::take(30)->where( 'created_at', '>=', \Carbon\Carbon::now()->subMonth() )
@@ -78,8 +73,6 @@ class Dash extends Controller
     }
 
     public function home(){
-
-        // dd( Notification::take(1) );
 
         $activity_chart_data = Activity::take(7)->where( 'created_at', '>=', \Carbon\Carbon::now()->subMonth() )
                         ->groupBy('date')

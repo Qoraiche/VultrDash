@@ -72,7 +72,12 @@ class Dnsdomains extends Controller
 
             $user->notify( new DnsAdded( $dnsInfo ) );
 
-            activity()->log( __( 'Add Domain name' ) );
+            activity()->withProperties([
+
+                    'domain' => $request->domain,
+                    'server_ip' => $request->serverip
+
+            ])->log( __( 'Add Domain name' ) );
 
             // redirect and flush session
             return redirect('dns')->with( ['type' => 'success', 'message' => 'Domain <strong>'.$request->domain.'</strong> added' ]);
@@ -108,9 +113,14 @@ class Dnsdomains extends Controller
 
             $user->notify( new DnsDeleted( $request->domain ) );
 
+            activity()->withProperties([
+
+                'domain' => $request->domain
+
+            ])->log( __( 'Delete Domain name' ) );
+
             // redirect and flush session
-            return redirect('dns')->with( 
-                [
+            return redirect('dns')->with([
                     'type' => 'success',
                     'message' => 'Domain <strong>'.$request->snapshotid.'</strong> deleted' 
                 ]);
@@ -120,7 +130,6 @@ class Dnsdomains extends Controller
             if (preg_match( '/response:\s(.*)/i', $destroyRes['error'], $matches) ) {
 
                 return redirect('dns/add')->with( ['type' => 'error', 'message' => str_replace('response:', null, $matches[0] ) ] );
-
             }
 
         }

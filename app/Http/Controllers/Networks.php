@@ -58,7 +58,7 @@ class Networks extends Controller
         $user = User::findOrFail( Auth::id() );
 
         $data = [
-            'DCID' => $request->dcid ,
+            'DCID' => $request->dcid,
             'description' => $request->description,
             'v4_subnet' => $request->v4_subnet
         ];
@@ -74,7 +74,12 @@ class Networks extends Controller
 
             $user->notify( new PrivateNetworkAdded( $networkInfo ) );
 
-            activity()->log( __( 'Adding Private Network' ) );
+            activity()->withProperties([
+
+                'description' => $request->description,
+                'v4_subnet' => $request->v4_subnet
+
+            ])->log( __( 'Add Private Network' ) );
 
             // redirect and flush session
             return redirect('networks')->with( ['type' => 'success', 'message' => 'Network added' ]);
@@ -110,6 +115,12 @@ class Networks extends Controller
             Cache::forget('networks');
 
             $user->notify( new PrivateNetworkDeleted( $request->networkid ) );
+
+            activity()->withProperties([
+
+                'network_id' => $request->networkid,
+
+            ])->log( __( 'Add Private Network' ) );
 
             // redirect and flush session
             return redirect('networks')->with( ['type' => 'success', 'message' => 'Network <strong>'.$request->networkid.'</strong> destroyed' ]);

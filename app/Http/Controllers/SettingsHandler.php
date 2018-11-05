@@ -24,7 +24,12 @@ public function firewallGroupSet( Request $request )
             // clear cache
             Cache::forget('servers');
 
-            activity()->withProperties([ 'server_id' => $request->serverid, 'firewallgroup_id' => $request->firewallgroup ])->log( __( 'Changing firewall group' ) );
+            activity()->withProperties([ 
+
+                'server_id' => $request->serverid,
+                'firewallgroup_id' => $request->firewallgroup 
+
+            ])->log( __( 'Change server firewall group' ) );
 
             // redirect and flush session
             return redirect()->route('servers.view.settings', ['serverid' => $request->serverid])->with( ['firewall_message' => "Firewall group updated. It may take up to 120 seconds for these changes to apply. " ]);
@@ -55,7 +60,12 @@ public function firewallGroupSet( Request $request )
 
         if ( !isset( $attachIso['error'] ) ) {
 
-            activity()->withProperties([ 'server_id' => $request->serverid ])->log( __( 'Attaching ISO' ) );
+            activity()->withProperties([ 
+
+                'server_id' => $request->serverid,
+                'iso_id' => $request->customiso
+
+            ])->log( __( 'Attach ISO to server' ) );
 
             // redirect and flush session
             return redirect()->route('servers.view.settings', ['serverid' => $request->serverid, '#iso-setting'])->with( ['iso_message' => "Attaching ISO to machine..." ]);
@@ -85,7 +95,11 @@ public function firewallGroupSet( Request $request )
 
         if ( !isset( $detachiso['error'] ) ) {
 
-            activity()->withProperties([ 'server_id' => $request->serverid ])->log( __( 'Detaching ISO' ) );
+            activity()->withProperties([ 
+
+                'server_id' => $request->serverid
+
+            ])->log( __( 'Detach server ISO' ) );
 
             // redirect and flush session
             return redirect()->route('servers.view.settings', ['serverid' => $request->serverid, '#iso-setting'])->with( ['iso_message' => "ISO removed from machine" ]);
@@ -118,7 +132,12 @@ public function firewallGroupSet( Request $request )
             // clear cache
             Cache::forget('servers');
 
-            activity()->withProperties([ 'server_id' => $request->serverid ])->log( __( 'Editing server label' ) );
+            activity()->withProperties([ 
+
+                'server_id' => $request->serverid,
+                'label' => $request->label
+
+            ])->log( __( 'Set server label' ) );
 
             // redirect and flush session
             return redirect()->route('servers.view.settings', ['serverid' => $request->serverid, '#label-setting'])->with( ['label_tag_message' => "Label updated" ]);
@@ -152,7 +171,12 @@ public function firewallGroupSet( Request $request )
             // clear cache
             Cache::forget('servers');
 
-            activity()->withProperties([ 'server_id' => $request->serverid, 'snapshot_id' => $request->snapshotid ])->log( __( 'Restoring snapshot' ) );
+            activity()->withProperties([ 
+
+                'server_id' => $request->serverid, 
+                'snapshot_id' => $request->snapshotid 
+
+            ])->log( __( 'Restore server snapshot' ) );
 
             // redirect and flush session
             return redirect()->back()->with( ['message' => "A snapshot is currently being restored of this instance." ]);
@@ -184,7 +208,12 @@ public function firewallGroupSet( Request $request )
             // clear cache
             Cache::forget('servers');
 
-            activity()->withProperties([ 'server_id' => $request->serverid ])->log( __( 'Editing server tag' ) );
+            activity()->withProperties([ 
+
+                'server_id' => $request->serverid,
+                'tag' => $request->tag
+
+            ])->log( __( 'Set server tag' ) );
 
             // redirect and flush session
             return redirect()->route('servers.view.settings', ['serverid' => $request->serverid, '#label-setting'])->with( ['type' => 'success', 'message' => "Tag updated" ]);
@@ -217,7 +246,12 @@ public function firewallGroupSet( Request $request )
             // clear cache
             Cache::forget('servers');
 
-            activity()->withProperties([ 'server_id' => $request->serverid, 'plan_id' => $request->vpsplan ])->log( __( 'Upgrading server plan' ) );
+            activity()->withProperties([ 
+
+                'server_id' => $request->serverid, 
+                'plan_id' => $request->vpsplan 
+
+            ])->log( __( 'Upgrade server plan' ) );
 
             // redirect and flush session
             return redirect()->route('servers.view.settings', ['serverid' => $request->serverid, '#plan-setting'])->with( ['plan_message' => "Subscription upgraded" ]);
@@ -250,7 +284,11 @@ public function firewallGroupSet( Request $request )
             // clear cache
             Cache::forget('servers');
 
-            activity()->withProperties([ 'server_id' => $request->serverid, 'os_id' => $request->osid ])->log( __( 'Changing server OS' ) );
+            activity()->withProperties([ 
+
+                'server_id' => $request->serverid
+
+            ])->log( __( 'Change server OS' ) );
 
             // redirect and flush session
             return redirect()->route('servers.view.settings', ['serverid' => $request->serverid, '#os-setting'])->with( ['os_message' => "Operating system changed" ]);
@@ -283,7 +321,12 @@ public function firewallGroupSet( Request $request )
             // clear cache
             Cache::forget('servers');
 
-            activity()->withProperties([ 'application_id' => $request->application, 'server_id' => $request->serverid ])->log( __( 'Changing server application' ) );
+            activity()->withProperties([ 
+
+                'application_id' => $request->application, 
+                'server_id' => $request->serverid 
+
+            ])->log( __( 'Change server application' ) );
 
             // redirect and flush session
             return redirect()->route('servers.view.settings', ['serverid' => $request->serverid, '#application-setting'])->with( ['application_message' => "Application changed" ]);

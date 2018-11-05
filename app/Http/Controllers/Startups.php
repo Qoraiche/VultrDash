@@ -8,7 +8,6 @@ use vultrui\Notifications\StartupScriptDeleted;
 use vultrui\VultrLib\Startup;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
-
 use vultrui\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -68,10 +67,15 @@ class Startups extends Controller
 
             // $user->notify( new StartupScriptAdded( $scriptInfo ) );
 
-            activity()->log( __( 'Creating Startup Script' ) );
+            activity()->withProperties([
+
+                'name' => $request->name,
+                'type' => $request->type,
+
+            ])->log( __( 'Create startup script' ) );
 
             // redirect and flush session
-            return redirect('startup')->with( ['type' => 'success', 'message' => 'Startup Script added Successfully' ]);
+            return redirect('startup')->with( ['type' => 'success', 'message' => 'Startup Script added' ]);
 
         }
 
@@ -104,8 +108,14 @@ class Startups extends Controller
 
             $user->notify( new StartupScriptDeleted( $request->scriptid ) );
 
+            activity()->withProperties([
+
+                'script_id' => $request->scriptid
+
+            ])->log( __( 'Destroy startup script' ) );
+
             // redirect and flush session
-            return redirect('startup')->with( ['type' => 'success', 'message' => 'Startup script removed successfully' ]);
+            return redirect('startup')->with( ['type' => 'success', 'message' => 'Startup script <strong>'.$request->scriptid.'</strong> removed' ]);
 
         } else {
 

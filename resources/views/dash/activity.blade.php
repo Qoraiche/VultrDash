@@ -63,7 +63,7 @@
                         <tr>
                           <td class="w-1"><span class="avatar" style="background-image: url({{ $activity->causer !== null ? Gravatar::src($activity->causer->email) : '' }})"></span></td>
                           <td class="text-nowrap">{!! $activity->causer !== null ? $activity->causer->slug() : '<small><i>User no longer exists</i></small>' !!}</td>
-                          <td><span data-html="true" data-toggle="tooltip" data-placement="top" title="@foreach( $activity->properties->toArray() as $property => $value ) {{ '<b>'.str_replace('_', ' ', $property).'</b>: '.$value.' ' }} @endforeach">{{ $activity->description }}</span></td>
+                          <td><span data-html="true" data-toggle="tooltip" data-placement="top" title="@foreach( $activity->properties->toArray() as $property => $value ) {{ '<b>'.str_replace('_', ' ', $property).'</b>: '.$value.'<br>' }} @endforeach">{{ ucwords($activity->description) }}</span></td>
                           <td class="text-nowrap">{{ $activity->created_at->diffForHumans() }}</td>
                           <td class="w-1">
                             @hasrole('super-admin')

@@ -63,7 +63,11 @@ class Isos extends Controller
 
             $user->notify( new IsoAdded( $isoInfo ) );
 
-            activity()->log( __( 'Adding ISO' ) );
+            activity()->withProperties([
+
+                'url' => $request->iso_url
+
+            ])->log( __( 'Adding ISO' ) );
 
             // redirect and flush session
             return redirect('iso')->with( ['type' => 'success', 'message' => 'ISO added' ]);

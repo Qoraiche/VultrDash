@@ -78,10 +78,11 @@ class Blockstorage extends Controller
 
             $user->notify( new BlockStorageAdded( $storageInfo ) );
 
-            activity()->withProperties([ 
+            activity()->withProperties([
 
                     'blockstorage_id' => $results['SUBID'],
-                    'label' => $request->label
+                    'label' => $request->label,
+                    'size_gb' => $request->sizegb,
 
             ])->log( __( 'Add Blockstorage' ) );
 
@@ -121,8 +122,8 @@ class Blockstorage extends Controller
 
             $user->notify( new BlockStorageDeleted( $request->subid ) );
 
-            activity()->withProperties([ 
-
+            activity()->withProperties([
+                
                 'blockstorage_id' => $request->subid,
 
             ])->log( __( 'Delete Blockstorage' ) );

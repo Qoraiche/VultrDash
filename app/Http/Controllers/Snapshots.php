@@ -115,6 +115,12 @@ class Snapshots extends Controller
 
             $user->notify( new SnapshotAdded( $snapshotInfo ) );
 
+            activity()->withProperties([
+
+                'url' => $request->url
+
+            ])->log( __( 'Create snapshot from url' ) );
+
             return redirect('snapshots')->with( ['type' => 'success', 'message' => 'A snapshot is currently being taken of this instance. This process can take up to 60 minutes to complete. Most server actions will be unavailable until this has completed' ]);
         }
 
@@ -158,6 +164,13 @@ class Snapshots extends Controller
 
             $user->notify( new SnapshotAdded( $snapshotInfo ) );
 
+            activity()->withProperties([
+
+                'server_id' => $request->subid,
+                'description' => $request->snapshot_label
+
+            ])->log( __( 'Create snapshot from server' ) );
+
             if ( isset( $request->page ) ){
                 
                 return redirect()->route('servers.view.snapshots', [ 'serverid' => $request->subid ])->with( ['type' => 'success', 'message' => "A snapshot is currently being taken of this instance. This process can take up to 60 minutes to complete. Most server actions will be unavailable until this has completed" ]);
@@ -197,6 +210,12 @@ class Snapshots extends Controller
             Cache::forget('snapshots');
 
             $user->notify( new SnapshotDeleted( $request->snapshotid ) );
+
+            activity()->withProperties([
+
+                'snapshot_id' => $request->snapshotid
+
+            ])->log( __( 'Destroy snapshot from server' ) );
 
             // redirect and flush session
             return redirect()->back()->with( ['type' => 'success', 'message' => 'Snapshot <strong>'.$request->snapshotid.'</strong> deleted' ]);

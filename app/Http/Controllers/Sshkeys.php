@@ -57,7 +57,7 @@ class Sshkeys extends Controller
         $user = User::findOrFail( Auth::id() );
 
         $data = [
-            'name' => $request->name ,
+            'name' => $request->name,
             'ssh_key' => $request->ssh_key
         ];
 
@@ -72,7 +72,11 @@ class Sshkeys extends Controller
 
             // $user->notify( new KeyAdded( $keyInfo ) );
 
-            activity()->log( __( 'Creating new SSH Key' ) );
+            activity()->withProperties([
+
+                'name' => $request->name
+
+            ])->log( __( 'Create SSH key' ) );
 
             // redirect and flush session
             return redirect('sshkeys')->with( ['type' => 'success', 'message' => 'SSH key created' ]);
@@ -127,9 +131,11 @@ class Sshkeys extends Controller
 
             $keyInfo = $this->vultr->list()[$results['SSHKEYID'] ];
 
-            $user->notify( new KeyUpdated( $keyInfo ) );
+            activity()->withProperties([
 
-            activity()->log( __( 'Updating SSH key' ) );
+                'name' => $request->name
+
+            ])->log( __( 'Update SSH key' ) );
 
             return redirect('sshkeys')->with( ['type' => 'success', 'message' => 'SSH key <strong>'.$request->sshkeyid.'</strong> updated' ]);
 
@@ -164,6 +170,12 @@ class Sshkeys extends Controller
             Cache::forget('sshkeys');
 
             $user->notify( new KeyDeleted( $request->sshkeyid ) );
+
+            activity()->withProperties([
+
+                'sshkey_id' => $request->sshkeyid
+
+            ])->log( __( 'Destroy SSH key' ) );
 
             // redirect and flush session
             return redirect('sshkeys')->with( ['type' => 'success', 'message' => 'SSH key <strong>'.$request->sshkeyid.'</strong> deleted' ]);
