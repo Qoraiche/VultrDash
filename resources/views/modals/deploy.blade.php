@@ -281,7 +281,7 @@
 
                   <div class="card-footer">
 
-                  <button class="button float-right" onclick="document.forms['vc2_deploy'].submit();$(this).addClass('btn-loading');">Deploy</button>
+                  <button class="button float-right" onclick="document.forms['vc2_deploy'].submit();$(this).addClass('btn-loading');$('.deploy-vc2').addClass('active');">Deploy</button>
 
                   </div>
 
@@ -299,7 +299,6 @@ require(['jquery', 'selectize'], function($, selectize) {
     $(document).ready(function() {
 
       setServerType( $('select#server-type').val() );
-
 
       function setServerType( type ){
 
@@ -339,13 +338,6 @@ require(['jquery', 'selectize'], function($, selectize) {
 
        });
 
-        var assetBase = "{{ asset('images/') }}";
-
-        function loadDeploy(deployType = 'vc2', dcid = 1, type = 'all', listtype = '') {
-
-          // $('.deploy-vc2').addClass('active');
-
-        }
 
         $('#regions, #server-type, #server-app').selectize({
                             render: {

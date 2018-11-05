@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="robots" content="noindex">
-  <title>VultrOn
+  <title>Vultrdash
     @if(View::hasSection('title'))
         - @yield('title')
     @else - Dashboard @endif
