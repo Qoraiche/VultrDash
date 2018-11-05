@@ -2,7 +2,7 @@
           <div class="container">
             <div class="d-flex">
               <a class="header-brand" href="{{ url('/') }}">
-                <img src="{{ asset('images/vultron.png') }}" class="header-brand-img" alt="Vultr">
+                <img src="{{ asset('images/vultrdash_logo.png') }}" class="header-brand-img" alt="Vultr">
               </a>
               <div class="d-flex order-lg-2 ml-auto">
                 <div class="d-flex position-relative">
