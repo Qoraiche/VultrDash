@@ -40,19 +40,24 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    public function showRegistrationForm()
+    {
+        return redirect( $this->redirectTo );
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+    /*protected function validator(array $data)
     {
         return Validator::make($data, [
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
-    }
+    }*/
 
     /**
      * Create a new user instance after a valid registration.
@@ -60,11 +65,11 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \vultrui\User
      */
-    protected function create(array $data)
+    /*protected function create(array $data)
     {
         return User::create([
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-    }
+    }*/
 }

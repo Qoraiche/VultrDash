@@ -60,7 +60,6 @@ Route::resource( 'users', 'ManageUsers' );
  * Settings
  */
 
-
 Route::group( [ 'prefix' => 'account', 'as' => 'account.', 'middleware' => 'auth'], function(){
 	Route::get('/', 'MyAccount@index')->name('index');
 	Route::get('thread/{id}', 'Myaccount@showThread')->name('thread.show');
