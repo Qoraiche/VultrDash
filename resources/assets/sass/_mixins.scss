@@ -1,0 +1,92 @@
+// btn mixin
+@mixin __btn( $type: 'primary' ) {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 12px 24px;
+  margin: 0px;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 24px;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  color: #ffffff;
+  
+@if $type == 'primary' {
+    background-color: $primary-btn-bg-color;
+   } @else {
+        background-color: $default-btn-bg-color;
+}
+  
+  border-radius: 3px;
+  border: none;
+  -webkit-appearance: none;
+  transition: all ease-in .1s;
+}
+
+@mixin __input(){
+  border: 1px solid $input-border-color;
+  vertical-align: middle;
+  border-radius: 3px;
+  //height: $input-height;
+  padding: 0px 16px;
+  font-size: $input-font-size;
+  color: $input-color;
+  background-color: #ffffff;
+}
+
+@mixin dashboard_main_rules {
+  @include __flex;
+  color:$primary-color;
+  font-family:$main-font-stack;
+  font-size:$primary-font-size;
+  // border-top-width: 7px;
+  // border-top-style: solid;
+  // border-top-color: #1e88e5;
+  padding-top:20px;
+  
+  //background: linear-gradient(0deg, #0b4182 1%, #1e88e5 100%);
+}
+
+@mixin __flex{
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: column wrap;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+@mixin dashboard_main_input {
+  input[type="submit"], input[type="button"], .button, a.button {
+    @include __btn('primary');
+}
+  
+input[type="submit"]:hover, input[type="submit"]:focus, input[type="submit"]:active, input[type="button"]:hover, input[type="button"]:focus, input[type="button"]:active, .button:hover, .button:focus, .button:active {
+    background-color:$primary-btn-bg-color-hover;
+  }
+  
+  
+input[type="text"], input[type="number"], input[type="file"], input[type="password"], input[type="email"], select {
+    // @include __input();
+  }
+  
+input[type="text"]:focus, input[type="number"]:focus, input[type="file"]:focus, input[type="password"]:focus, input[type="email"]:focus, select:focus {
+    border-color: $input-focus-border-color;
+}
+  
+input[type="text"][readonly], input[type="number"][readonly], input[type="file"][readonly], input[type="password"][readonly], input[type="email"][readonly], input[type="text"][readonly], input[type="text"]:disabled, input[type="number"]:disabled, input[type="file"]:disabled, input[type="password"]:disabled, input[type="email"]:disabled, input[type="text"]:disabled {
+    background-color: #EEEEEE;
+    cursor:default;
+  }
+  
+input[type="submit"]:disabled, input[type="button"]:disabled {
+    background-color: #EEEEEE;
+    color: #aaaaaa;
+    cursor:default;
+}
+  
+}

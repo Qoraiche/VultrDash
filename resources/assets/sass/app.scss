@@ -1,0 +1,610 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,400i,700,700i');
+
+@import 'variables';
+
+@import 'mixins';
+
+html {
+    font-family: sans-serif;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+body {
+    font-family: $main-font-stack;
+    line-height: 23px;
+    -webkit-font-feature-settings: "lnum";
+    -ms-font-feature-settings: "lnum";
+    -o-font-feature-settings: "lnum";
+    font-feature-settings: "lnum";
+}
+
+.footer {
+    background: transparent;
+    font-size: 0.875rem;
+    padding: 1.25rem 0;
+    color: #9aa0ac;
+    border-top: 0;
+}
+
+.pagination {
+    justify-content: end;
+}
+
+.card-body {
+
+    &.vultr-notify {
+
+        padding: 12px;
+    }
+}
+
+#vultr-wp-dashboard {
+
+    //include main rules mixin
+    @include dashboard_main_rules; // btns rules
+    @include dashboard_main_input;
+
+
+    .instances {
+        .page-options {
+            margin-bottom: 15px;
+        }
+    }
+
+
+    .vertical-nav {
+
+        a {
+            margin-bottom: 13px;
+        }
+    }
+
+    a {
+
+        &.nav-link {
+
+            &.primary-vertical-link {
+
+                padding: 13px;
+                font-weight: 600;
+
+                &:last-child {
+                    margin-bottom: 40px;
+                }
+
+            }
+
+           /* 
+ */
+            &.secondary-link {
+
+                padding: 10px;
+                color: $primary-color;
+
+                &.active {
+                    color: $primary-link-color;
+                    background: transparent;
+                    border: 1px solid $primary-link-color;
+                }
+
+                &.home {
+
+                    color: $primary-color;
+                    padding-bottom: 10px;
+                    margin-right: 8px;
+
+                    &.active {
+                        color: $primary-link-color;
+                        background: transparent;
+                        border-top: none;
+                        border-left: none;
+                        border-right: none;
+                        border-bottom: 1.2px solid $primary-link-color;
+                        border-radius: 0;
+                    }
+                }
+
+            }
+           
+        } 
+
+        // text-decoration:none; //color:$primary-link-color;
+        &:hover,
+        &:active,
+        &:focus {
+            // color:$primary-link-color;
+            outline: none; // border:none;
+            // -moz-outline-style:none;
+        }
+    }
+
+    ul.pagination {
+
+        justify-content: end;
+        float: right;
+        margin: 22px;
+
+
+        .page-item {
+            padding: 1px;
+            border: none;
+        }
+
+        li {
+            position: relative;
+            display: block;
+            padding: 0.5rem 0.75rem;
+            margin-left: -1px;
+            line-height: 1.25;
+            color: #495057;
+            background: #fff;
+            border: 1px solid #dee2e6;
+
+            &.active {
+
+                a {
+                    color: #fff;
+                }
+
+                background-color: #0084df;
+                border-color: #467fcf;
+            }
+        }
+    }
+
+    .icon {
+        &.active-icon {
+            color: #1e88e5;
+        }
+    }
+
+    h1 {
+        font-size: 25px;
+        line-height: 34px;
+        margin: 0px 0px 25px 0px;
+        margin-bottom: 25px;
+        color: #363B40;
+        font-weight: 500;
+    }
+
+    .table {
+        thead {
+            border-bottom: 1px solid #EDEFF2;
+            line-height: 1.7em;
+            th {
+                color: #9DA2A6;
+                font-size: 13.4px;
+                font-weight: normal;
+            }
+        }
+        tbody {
+            tr {
+                &:hover {
+                    background-color: #fafbfc;
+                }
+
+                td {
+
+                    &.server,
+                    &.location,
+                    &.charges,
+                    &.status {
+                        // cursor:pointer;
+                    }
+
+                    &.active {
+                        color: $success-message-color;
+                    }
+
+                    span {
+
+                        //font-size: 1em;
+                        &.firstline,
+                        &.secondline {
+                            display: block;
+                        }
+                        &.firstline {
+                            color: #2b3033;
+                            font-weight: bold;
+                        }
+
+                        &.secondline {
+                            color: #616366;
+                            line-height: 2.6em;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    %message {
+        position: relative;
+        font-size: 15px;
+        max-width: 1290px;
+        margin: 0px auto 30px auto;
+        padding: 10px 24px 10px 10px;
+        text-align: left;
+        border-radius: 5px;
+        border-width: 1px;
+        border-style: solid;
+    }
+
+    .message {
+        @extend %message;
+    }
+
+    .success {
+        @extend %message;
+        color: $success-message-color;
+        border: 1px solid $success-message-border-color;
+    }
+
+    .error {
+        @extend %message;
+        color: $error-message-color;
+        border: 1px solid $error-message-border-color;
+    }
+
+    .warning {
+        @extend %message;
+        color: $warning-message-color;
+        border: 1px solid $warning-message-border-color;
+    }
+
+    .info {
+        @extend %message;
+        color: $info-message-color;
+        border: 1px solid $info-message-border-color;
+    }
+
+    >.vultr-wp-navigation-menu {
+        width: 300px;
+        margin: 10px;
+        border-radius: 5px;
+
+        border: 1px solid #EDF0F2;
+        background: #fff;
+    }
+
+    .back-previous {
+        font-size: 1.4em;
+        display: inline-block;
+        margin-right: 10px;
+        float: left;
+
+
+         :hover {
+            color: #0084df;
+        }
+    }
+
+    .dropdown-item.active,
+    .dropdown-item:active {
+        background-color: #f6f6f6;
+    }
+
+        // background:#fff;
+        .api-navigation {
+
+            margin: 10px auto;
+
+            li {
+                display: inline-block;
+                margin-right: 20px;
+
+                a {
+
+                    i {
+                        display: block;
+                        text-align: center;
+                        font-size: 1.4em;
+                        margin: 5px 5px;
+                    }
+                    color:$primary-color;
+                    transition:.3s;
+
+                    &:hover,
+                    &:active {
+                        color: $primary-link-color;
+                    }
+
+                    &.active {
+                        color: $primary-link-color;
+                    }
+                }
+            }
+        }
+
+
+        &.stretch {
+            flex-grow: 2;
+        }
+
+        &.full-width {
+            width: 100%;
+        }
+
+        .main-content {
+
+            .server-head-information {
+
+                .avatar {
+                    display: inline-block;
+                    float: left;
+                    margin-right: 14px;
+                }
+
+                h2 {
+                    font-size: 1.5em;
+                    line-height: 34px;
+                    margin: 0px 0px 25px 0px;
+                    margin-bottom: 5px;
+                    color: #363B40;
+                    font-weight: 500;
+                    display: inline-block;
+                }
+
+
+                .server-info-list {
+
+                    li {
+                        display: inline-block;
+                        margin-right: 14px;
+                    }
+                }
+
+
+                .server-action {
+
+                    display: inline-block;
+                    margin-left: 60px;
+                    float: right;
+
+                    li {
+
+                        font-size: 1.4em;
+                        margin-right: 0.8em;
+                        cursor: pointer;
+                    }
+
+                    &.dropdown {
+
+                        a.icon {
+                            font-size: 1.5em;
+                        }
+                    }
+                }
+            }
+
+            h1 {
+                margin-bottom: 43px;
+            }
+
+            >* {
+
+                margin-bottom: 25px;
+            }
+
+            .header-actions {
+                float: right;
+                margin-bottom: 2px;
+
+                >* {
+                    float: right;
+                }
+            }
+
+            .form-fieldset {
+                background: #FFF;
+            }
+        }
+
+        /* .vultr-logo {
+                background: url('/vultron-icon.png');
+                display: block;
+                margin: 0 auto 30px auto;
+                height: 58px;
+                width: 167px;
+                background-size: auto 30px;
+                background-repeat: no-repeat;
+            } */
+
+        .authentication-form {
+
+            // max-width: 450px;
+            // min-width: 320px;
+
+            form {
+
+                >input {
+                    min-width: 344px;
+                }
+
+                >* {
+                    display: block;
+                    margin-bottom: 1.2em; //width:90%;
+                }
+
+                >span,
+                a {
+                    display: inline;
+                }
+
+                input[type="submit"] {
+                    margin: 19px 0px;
+                }
+            }
+
+        }
+
+
+        .user-details {
+
+            margin: 10px 25px;
+
+            .user-main-details,
+            .user-balance-details {
+                display: inline-block;
+            }
+
+            .user-details_mid-view {
+
+                margin: 0px 12px;
+
+                .icon {
+
+                    margin-right: 10px;
+                    cursor: pointer;
+
+                    &.active-icon {
+                        color: $primary-link-color;
+                    }
+
+                     :hover {
+                        color: $primary-link-color;
+                    }
+
+                    &:nth-child(3) {
+                        display: none;
+                    }
+                }
+            }
+
+            .user-balance-details {
+                float: right;
+
+                li {
+                    display: inline-block;
+                    margin-right: 50px;
+                    font-size: .89em;
+                }
+            }
+
+            span {
+                &#auth-user-email {
+                    font-size: .9em;
+                }
+            }
+
+            p {
+                &#auth-user-label {
+                    margin-bottom: 11px;
+                }
+            }
+
+            h1 {
+                &#auth-user-name {
+                    font-size: 1.41em;
+                    padding: 0;
+                    margin-bottom: 10px;
+                    a {
+                        font-size: .6em;
+                    }
+                }
+            }
+
+            .user-balance-details {
+                li {
+                    h1 {
+                        margin: 0;
+                        &#money {
+                            font-size: 1.4em;
+                        }
+                        &#date {
+                            font-size: 1.3em;
+                        }
+                    }
+
+
+                    span {
+                        color: #9DA2A6;
+                        font-size: .9em;
+                    }
+                }
+            }
+        }
+    
+
+
+    .server-information {
+
+        .card {
+            border: none;
+        }
+
+        .info-data {
+            margin-top: 45px;
+        }
+    }
+
+    /* .no-pad {
+        padding: 0;
+    }
+
+    .no-border {
+        border: none;
+    }
+
+    .red {
+        color: $error-message-color;
+    }
+
+    .green {
+        color: $success-message-color;
+    }
+
+    .orange {
+        color: $warning-message-color;
+    }
+
+    .blue {
+        color: $info-message-color;
+    } */
+
+    @media screen and (max-width: 1056px) {
+        .vultr-wp-container {
+            .user-details {
+
+                .user-details_mid-view {
+                    display: block;
+                    margin-top: 26px;
+                    .icon {
+                        margin-right: 10px;
+                        font-size: 1.5em;
+
+                        &:nth-child(3) {
+                            display: inline-block;
+                        }
+
+                        &:nth-child(2) {
+                            float: right;
+                        }
+                    }
+                }
+
+                .user-main-details {
+                    * {
+                        display: none;
+                    }
+                }
+
+                .user-balance-details {
+                    display: none;
+                    float: none;
+                    li {
+                        display: block;
+                        margin-right: 50px;
+                        margin-bottom: 15px;
+                        border-bottom: 1px solid #cdcdcd;
+                    }
+                }
+            }
+        }
+    }
+
+    .instance-nav-list {
+        border-bottom: 1px solid #edeff2;
+    }
+}
