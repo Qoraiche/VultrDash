@@ -2,92 +2,26 @@
 
 /*
 |--------------------------------------------------------------------------
-| Application Web Routes
+| Vultrdash Application Web Routes
 |--------------------------------------------------------------------------
 |
 */
 
-use vultrui\Notifications\BlockStorageAdded;
-use vultrui\Notifications\KeyDeleted;
-
-use Spatie\Activitylog\Models\Activity;
-
-
-/*Route::get('activity/{id}', function( $id ){
-
-	$activities = Activity::where('properties', 'LIKE', '%'.$id.'%')->get();
-
-	foreach ( $activities as $activity ) {
-		echo $activity->created_at;
-	}
-
-});
-*/
-
-Route::group(['prefix' => 'messages'], function () {
-    Route::get('/', ['as' => 'messages', 'uses' => 'MessagesController@index']);
-    Route::get('create', ['as' => 'messages.create', 'uses' => 'MessagesController@create']);
-    Route::post('/', ['as' => 'messages.store', 'uses' => 'MessagesController@store']);
-    Route::get('{id}', ['as' => 'messages.show', 'uses' => 'MessagesController@show']);
-    Route::put('{id}', ['as' => 'messages.update', 'uses' => 'MessagesController@update']);
-});
-
-Route::get('admin', function(){
-
-	$user = vultrui\User::find(1);
-	return $user->assignRole( 'super-admin' );
-
-});
-
-Route::get( 'notify', function( ){
-
-	$users = vultrui\User::where('id', '!=' , Auth::id() )->orWhereNull('id')->get();
-	
-	// $user = vultrui\User::findOrFail( Auth::id() );
-	// 
-	$user = vultrui\User::find( auth()->user()->id );
-
-	return $user->notify( new BlockStorageAdded( ['SUBID' => '8787897'] ) );
-
-	$server = [ 'SUBID' => '52198765' ];
-
-	$snapshot = [ 
-					"SSHKEYID" => "5359435d28b9a",
-			        "date_created" => "2018-04-18 12:40:40",
-			        "description" => "Snapshot #3",
-			        "size" => "42949672960" 
-			    ];
-
-	// $user->notify( new KeyDeleted( '7676765795' ) );
-
-	Notification::send( $users , new KeyDeleted( '7676765795' ));
-
-	// SendNotificationSlack::dispatch( $user )->delay( now()->addSeconds(3) );
-
-	// $user->notify((new ServerDestroyed('huhuhuhu'));
-	
-	// $when = now()->addSeconds(3); // delay for 2.5 minutes, & send
-
-	// $user->notify( ( new ServerDestroyed('78676786868') )->delay($when) );
-
-	// $user->notify(new ServerDestroyed('78676786868'));
-
-});
-
-
 Route::get( '/', 'Dash@home' )->name('home');
-
 Route::get( 'activity', 'Dash@activity' )->name('activity');
 Route::delete( 'activity/{id}', 'Dash@deleteActivity' )->middleware( ['role:super-admin'] );
 Route::delete( 'activity', 'Dash@clearActivity' )->middleware( ['role:super-admin'] )->name('activity.clear');
 Route::delete( 'useractivity', 'Dash@deleteActivityByUser' )->middleware( ['role:super-admin'] );
 
+/**
+ * 
+ * Refresh - clear cache
+ * 
+ */
+
 Route::get( 'refresh', function(){
-
 	Cache::flush();
-
 	return redirect( url()->previous() );
-
 });
 
 /**
@@ -101,9 +35,23 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 /**
  * 
- * Users
+ * Threads/messages
+ * 
  */
 
+Route::group(['prefix' => 'messages'], function () {
+    Route::get('/', ['as' => 'messages', 'uses' => 'MessagesController@index']);
+    Route::get('create', ['as' => 'messages.create', 'uses' => 'MessagesController@create']);
+    Route::post('/', ['as' => 'messages.store', 'uses' => 'MessagesController@store']);
+    Route::get('{id}', ['as' => 'messages.show', 'uses' => 'MessagesController@show']);
+    Route::put('{id}', ['as' => 'messages.update', 'uses' => 'MessagesController@update']);
+});
+
+
+/**
+ * 
+ * Users
+ */
 
 Route::resource( 'users', 'ManageUsers' );
 
@@ -114,7 +62,6 @@ Route::resource( 'users', 'ManageUsers' );
 
 
 Route::group( [ 'prefix' => 'account', 'as' => 'account.', 'middleware' => 'auth'], function(){
-
 	Route::get('/', 'MyAccount@index')->name('index');
 	Route::get('thread/{id}', 'Myaccount@showThread')->name('thread.show');
 	Route::post('thread', 'Myaccount@storeThread')->name('thread.store');
@@ -132,10 +79,7 @@ Route::group( [ 'prefix' => 'account', 'as' => 'account.', 'middleware' => 'auth
  * Api
  */
 
-
-
 Route::group( [ 'prefix' => 'api', 'middleware' => 'auth'], function(){
-
 	Route::get('get/regions','api@getRegions');
 	Route::get('get/plans','api@getPlans');
 	Route::get('get/plans/region/{dcid}/type/{type?}/{listtype?}','api@getRegionPlans');
@@ -164,9 +108,7 @@ Route::get('ips', 'Ips@index')->name('ips');
  */
 
 Route::get( '/servers', 'Dash@servers' )->name('servers.index');
-
 Route::group( [ 'prefix' => 'servers', 'as' => 'servers.', 'middleware' => [ 'auth', 'permission:manage servers' ] ], function(){
-
 	Route::get( '{serverid}/ddos', 'Servers@viewDDOS' )->name('view.ddos');
 	Route::post( 'halt', 'Servers@halt' )->name('halt');
 	Route::post( 'start', 'Servers@start' )->name('start');
@@ -207,15 +149,12 @@ Route::group( [ 'prefix' => 'servers', 'as' => 'servers.', 'middleware' => ['aut
  */
 
 Route::get('/snapshots', 'Snapshots@index')->name('snapshots.index');
-
 Route::group( ['prefix' => 'snapshots', 'as' => 'snapshots.', 'middleware' => [ 'auth', 'permission:manage snapshots' ] ], function(){
-
 	Route::get('add', 'Snapshots@add')->name('add');
 	Route::get('upload', 'Snapshots@upload')->name('upload');
 	Route::post('create', 'Snapshots@create')->name('create');
 	Route::post('createfromurl', 'Snapshots@createFromUrl')->name('createfromurl');
 	Route::delete('destroy', 'Snapshots@destroy')->name('destroy');
-
 });
 
 /**
@@ -225,12 +164,9 @@ Route::group( ['prefix' => 'snapshots', 'as' => 'snapshots.', 'middleware' => [ 
  */
 
 Route::get('/iso', 'isos@index')->name('iso.index');
-
 Route::group( ['prefix' => 'iso', 'as' => 'iso.', 'middleware' => [ 'auth', 'permission:manage iso' ] ], function(){
-
 	Route::get('add', 'isos@add')->name('add');
 	Route::post('create', 'isos@create')->name('create');
-
 });
 
 /**
@@ -240,16 +176,13 @@ Route::group( ['prefix' => 'iso', 'as' => 'iso.', 'middleware' => [ 'auth', 'per
  */
 
 Route::get( '/startup', 'startups@index' )->name( 'startup.index' );
-
 Route::group( ['prefix' => 'startup', 'as' => 'startup.', [ 'auth', 'permission:manage startupscripts' ] ], function(){
-
 	Route::get('/', 'startups@index')->name('index');
 	Route::get('add', 'startups@add')->name('add');
 	Route::post('create', 'startups@create')->name('create');
 	Route::delete('destroy', 'startups@destroy')->name('destroy');
 	Route::get('{id}/edit', 'Sshkeys@add')->name('edit');
 	Route::post('update', 'Sshkeys@add')->name('update');
-
 });
 
 /**
@@ -259,15 +192,12 @@ Route::group( ['prefix' => 'startup', 'as' => 'startup.', [ 'auth', 'permission:
  */
 
 Route::get('/sshkeys', 'Sshkeys@index')->name('sshkeys.index');
-
 Route::group( ['prefix' => 'sshkeys', 'as' => 'sshkeys.', 'middleware' => [ 'auth', 'permission:manage sshkeys' ] ], function(){
-
 	Route::get('add', 'Sshkeys@add')->name('add');
 	Route::get('edit/{sshkeyid}', 'Sshkeys@edit')->name('edit');
 	Route::post('create', 'Sshkeys@create')->name('create');
 	Route::post('update', 'Sshkeys@update')->name('update');
 	Route::delete('destroy', 'Sshkeys@destroy')->name('destroy');
-
 });
 
 /**
@@ -277,13 +207,10 @@ Route::group( ['prefix' => 'sshkeys', 'as' => 'sshkeys.', 'middleware' => [ 'aut
  */
 
 Route::get('/dns', 'Dnsdomains@index')->name('dns.index');
-
 Route::group( ['prefix' => 'dns', 'as' => 'dns.', 'middleware' => [ 'auth', 'permission:manage dns' ] ], function(){
-
 	Route::get('add', 'Dnsdomains@add')->name('add');
 	Route::post('create', 'Dnsdomains@create')->name('create');
 	Route::delete('delete', 'Dnsdomains@delete')->name('delete');
-
 });
 
 /**
@@ -293,13 +220,10 @@ Route::group( ['prefix' => 'dns', 'as' => 'dns.', 'middleware' => [ 'auth', 'per
  */
 
 Route::get('/blockstorage', 'blockstorage@index')->name('blockstorage.index');
-
 Route::group( ['prefix' => 'blockstorage', 'as' => 'blockstorage.', 'middleware' => [ 'auth', 'permission:manage blockstorage' ] ], function(){
-
 	Route::get('add', 'blockstorage@add')->name('add');
 	Route::post('create', 'blockstorage@create')->name('create');
 	Route::delete('delete', 'blockstorage@delete')->name('delete');
-
 });
 
 /**
@@ -309,11 +233,8 @@ Route::group( ['prefix' => 'blockstorage', 'as' => 'blockstorage.', 'middleware'
  */
 
 Route::get('/firewall', 'firewall@index')->name('firewall.index');
-
 Route::group( ['prefix' => 'firewall', 'as' => 'firewall.', 'middleware' => [ 'auth', 'permission:manage firewalls' ] ], function(){
-
 	Route::delete('delete', 'firewall@delete_group')->name('delete_group');
-
 });
 
 /**
@@ -323,11 +244,8 @@ Route::group( ['prefix' => 'firewall', 'as' => 'firewall.', 'middleware' => [ 'a
  */
 
 Route::get('/networks', 'Networks@index')->name('networks.index');
-
 Route::group( ['prefix' => 'networks', 'as' => 'networks.', 'middleware' => [ 'auth', 'permission:manage networks' ] ], function(){
-
 	Route::get('add', 'Networks@add')->name('add');
 	Route::post('create', 'Networks@create')->name('create');
 	Route::delete('delete', 'Networks@destroy')->name('destroy');
-
 });

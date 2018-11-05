@@ -12,7 +12,7 @@
       <div class="authentication-form">
 
         <div class="d-flex justify-content-center mb-7">
-          <img src="{{ asset('vultron-icon.png') }}" class="header-brand-img" style="height: 3rem;" alt="Vultr">
+          <img src="{{ asset('vultrdash_icon.png') }}" class="header-brand-img" style="height: 3rem;" alt="Vultr">
         </div>
 
         @if ( Session::has('message') )

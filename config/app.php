@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'VultrUI'),
+    'name' => env('APP_NAME', 'Vultrdash'),
 
 
     /*
@@ -26,14 +26,14 @@ return [
     */
 
     'vultr_authkey' => env('VULTR_AUTHKEY', false),
-
+    
 
     /*
     |--------------------------------------------------------------------------
-    | Vultr Authentication key
+    | Slack webhook url
     |--------------------------------------------------------------------------
     |
-    | This value determines the "auth key" your account is currently running in
+    | 
     |
     */
 
