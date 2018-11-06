@@ -26,9 +26,9 @@
 * Manage and create startup scripts
 * Manage and create SSH keys
 * Manage and create DNS
-* Manage and create Reserved IPs
+* Manage and create reserved IPs
 * Manage Backups
-* Manage and create Block storage
+* Manage and create block storage
 * Manage firewall
 * Manage networks
 
