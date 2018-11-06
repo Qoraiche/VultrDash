@@ -101,7 +101,7 @@ class Dash extends Controller
 
         if ( array_key_exists( 'error', $this->vultr->list() ) ) {
 
-            return view('errors.connection')->with('error' , $this->account->info()['error'] );
+            return view('errors.connection')->with('error' , $this->vultr->list()['error'] );
         }
 
         return $View;

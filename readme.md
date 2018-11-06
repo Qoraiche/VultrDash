@@ -22,14 +22,14 @@
 * Users conversations system (Group messaging / One to one messaging)
 * Create and deploy snapshots
 * Manage and deploy servers (vc2)
-* Manage and Create ISO
+* Manage and create ISO
 * Manage and create startup scripts
 * Manage and create SSH keys
 * Manage and create DNS
 * Manage and create reserved IPs
-* Manage Backups
+* Manage backups
 * Manage and create block storage
-* Manage firewall
+* Manage firewalls
 * Manage networks
 
 <a id="installation"></a>

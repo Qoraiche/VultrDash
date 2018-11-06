@@ -9,7 +9,7 @@
               <div class="row align-items-center">
                 <div class="col-auto">
                   <ul class="list-inline list-inline-dots mb-0">
-                    <li class="list-inline-item"><a href="./docs/index.html" target="_blank"><i class="fe fe-github"></i> Github</a></li>
+                    <li class="list-inline-item"><a href="https://github.com/Qoraiche/Vultrdash/" target="_blank"><i class="fe fe-github"></i> Github</a></li>
                     <li class="list-inline-item"><a href="mailto:qoraicheofficiel@hotmail.com"><i class="fe fe-mail"></i> Contact</a></li>
                     <li class="list-inline-item"><a href="//github.com/issues/" target="_blank"><i class="fe fe-map-pin"></i> Report issue</a></li>
                   </ul>
@@ -17,7 +17,7 @@
               </div>
             </div>
             <div class="col-12 col-lg-auto mt-3 mt-lg-0 text-center">
-              <a href=".">Vultrui</a> by <a href="//github.com/qoraiche" title="Kuraish">Qoraiche</a> All rights reserved.
+              <a href="https://github.com/Qoraiche/Vultrdash/" target="_blank">Vultrdash</a> by <a href="//github.com/qoraiche" title="Kuraish" target="_blank">Qoraiche</a> All rights reserved.
             </div>
         </div>
     </div>
