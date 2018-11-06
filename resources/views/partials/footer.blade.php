@@ -11,7 +11,7 @@
                   <ul class="list-inline list-inline-dots mb-0">
                     <li class="list-inline-item"><a href="https://github.com/Qoraiche/Vultrdash/" target="_blank"><i class="fe fe-github"></i> Github</a></li>
                     <li class="list-inline-item"><a href="mailto:qoraicheofficiel@hotmail.com"><i class="fe fe-mail"></i> Contact</a></li>
-                    <li class="list-inline-item"><a href="//github.com/issues/" target="_blank"><i class="fe fe-map-pin"></i> Report issue</a></li>
+                    <li class="list-inline-item"><a href="https://github.com/Qoraiche/Vultrdash/issues" target="_blank"><i class="fe fe-map-pin"></i> Report issue</a></li>
                   </ul>
                 </div>
               </div>
