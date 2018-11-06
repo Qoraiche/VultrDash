@@ -5,15 +5,11 @@
 
 # Table of Contents
 
-* [Introduction](#intro)
 * [Features](#features)
 * [Installation](#installation)
 * [Credits](#credits)
 * [Security](#security)
 * [License](#license)
-
-<a id="intro"></a>
-## Introduction
 
 <a id="features"></a>
 ## Features
@@ -75,6 +71,8 @@ Fill in your Slack webhook url to recieve notifications on your channel
 
     NOTIFICATION_SLACK_WEBHOOK_URL=[YOUR_WEBHOOK_URL]
     
+[More info, How to create your slack app](https://api.slack.com/incoming-webhooks)
+    
 #### Final configuration step
 
 Optimize the configuration Loading
@@ -91,6 +89,11 @@ Once the database is setup and migrations are up, run
 
     php artisan serve
     
+    
+## Note
+
+Don't forget to add your server ip address to the [access control whitelist](https://my.vultr.com/settings/#settingsapi)
+    
 Now you can visit http://localhost:8000/ to see the application in action.
 
 
@@ -105,7 +108,7 @@ Now you can visit http://localhost:8000/ to see the application in action.
 <a id="security"></a>
 ## Security
 
-If you discover a security vulnerability within this application, please e-mail me at qoraicheofficiel[at]hotmail[dot]com. All security vulnerabilities will be promptly addressed.
+If you discover a security vulnerability within this application, please e-mail me at qoraicheofficiel@hotmail.com. All security vulnerabilities will be promptly addressed.
 
 <a id="license"></a>
 ## License
