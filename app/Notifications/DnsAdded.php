@@ -58,7 +58,7 @@ class DnsAdded extends Notification
 
         return (new SlackMessage)
                 ->success()
-                ->content('A new DNS added - ('.$notifiable->email.')' )
+                ->content('A new DNS added - ('.$notifiable->slug().')' )
                 ->attachment(function ($attachment) {
                     $attachment->title( 'DNS '. $this->dns['domain'] )
                                ->fields( $this->dns );

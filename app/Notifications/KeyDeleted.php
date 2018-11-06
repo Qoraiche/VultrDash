@@ -57,7 +57,7 @@ class KeyDeleted extends Notification
 
         return (new SlackMessage)
                 ->warning()
-                ->content('SSH Key (ID: '.$this->key_id.') deleted - ('.$notifiable->email.')' );
+                ->content('SSH Key (ID: '.$this->key_id.') deleted - ('.$notifiable->slug().')' );
     }
 
     /**

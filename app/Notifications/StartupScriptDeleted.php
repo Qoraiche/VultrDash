@@ -55,7 +55,7 @@ class StartupScriptDeleted extends Notification
 
         return (new SlackMessage)
                 ->warning()
-                ->content('Startup script (ID: '.$this->startupscript_id.') has been deleted - ('.$notifiable->email.')' );
+                ->content('Startup script (ID: '.$this->startupscript_id.') has been deleted - ('.$notifiable->slug().')' );
     }
    
 

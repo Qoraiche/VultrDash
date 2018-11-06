@@ -56,7 +56,7 @@ class IsoAdded extends Notification
 
         return (new SlackMessage)
                 ->success()
-                ->content('A new ISO added - ('.$notifiable->email.')' )
+                ->content('A new ISO added - ('.$notifiable->slug().')' )
                 ->attachment(function ($attachment) {
                     $attachment->title( 'ISO '. $this->iso['ISOID'] )
                                ->fields( $this->iso );

@@ -54,7 +54,7 @@ class KeyUpdated extends Notification
     {
         return (new SlackMessage)
                 ->success()
-                ->content('A new SSH key updated - ('.$notifiable->email.')' )
+                ->content('A new SSH key updated - ('.$notifiable->slug().')' )
                 ->attachment(function ($attachment) {
                     $attachment->title( 'SSH key '. $this->sshkey['SSHKEYID'] )
                                ->fields( $this->sshkey );

@@ -55,7 +55,7 @@ class KeyAdded extends Notification
     {
         return (new SlackMessage)
                 ->success()
-                ->content('A new SSH key added - ('.$notifiable->email.')' )
+                ->content('A new SSH key added - ('.$notifiable->slug().')' )
                 ->attachment(function ($attachment) {
                     $attachment->title( 'SSH key '. $this->sshkey['SSHKEYID'] )
                                ->fields( $this->sshkey );

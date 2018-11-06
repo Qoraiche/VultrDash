@@ -54,7 +54,7 @@ class PrivateNetworkDeleted extends Notification
 
         return (new SlackMessage)
                 ->warning()
-                ->content('Private Network (ID: '.$this->network_id.') has been destroyed - ('.$notifiable->email.')' );
+                ->content('Private Network (ID: '.$this->network_id.') has been destroyed - ('.$notifiable->slug().')' );
     }
 
     /**

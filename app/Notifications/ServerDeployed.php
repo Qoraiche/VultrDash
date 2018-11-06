@@ -58,7 +58,7 @@ class ServerDeployed extends Notification implements ShouldQueue
 
         return (new SlackMessage)
                 ->success()
-                ->content('A new server deployed - ('.$notifiable->email.')' )
+                ->content('A new server deployed - ('.$notifiable->slug().')' )
                 ->attachment(function ($attachment) use ($notifiable) {
                     $attachment->title('Server '. $this->server['SUBID'], url('/servers/'.$this->server['SUBID']))
                                ->fields( $this->server );

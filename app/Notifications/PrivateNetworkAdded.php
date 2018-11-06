@@ -56,7 +56,7 @@ class PrivateNetworkAdded extends Notification
 
         return (new SlackMessage)
                 ->success()
-                ->content('A new private network added - ('.$notifiable->email.')' )
+                ->content('A new private network added - ('.$notifiable->slug().')' )
                 ->attachment(function ($attachment) {
                     $attachment->title( 'Private Network '. $this->network['NETWORKID'] )
                                ->fields( $this->network );

@@ -56,7 +56,7 @@ class SnapshotAdded extends Notification
 
         return (new SlackMessage)
                 ->success()
-                ->content('A new snapshot taken - ('.$notifiable->email.')' )
+                ->content('A new snapshot taken - ('.$notifiable->slug().')' )
                 ->attachment(function ($attachment) {
                     $attachment->title( 'Snapshot '. $this->snapshot['SNAPSHOTID'] )
                                ->fields( $this->snapshot );

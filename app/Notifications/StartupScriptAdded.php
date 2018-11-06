@@ -41,7 +41,7 @@ class StartupScriptAdded extends Notification
 
         return (new SlackMessage)
                 ->success()
-                ->content('A new startup script added - ('.$notifiable->email.')' )
+                ->content('A new startup script added - ('.$notifiable->slug().')' )
                 ->attachment(function ($attachment) {
                     $attachment->title( 'Startup Script '. $this->startupscript['SCRIPTID'] )
                                ->fields( $this->startupscript );

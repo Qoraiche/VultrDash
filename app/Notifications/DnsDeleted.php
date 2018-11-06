@@ -55,7 +55,7 @@ class DnsDeleted extends Notification
 
         return (new SlackMessage)
                 ->warning()
-                ->content('DNS (Domain: '.$this->dns_id.') has been deleted - ('.$notifiable->email.')' );
+                ->content('DNS (Domain: '.$this->dns_id.') has been deleted - ('.$notifiable->slug().')' );
 
     }
 

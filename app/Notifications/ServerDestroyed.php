@@ -57,7 +57,7 @@ class ServerDestroyed extends Notification
 
         return (new SlackMessage)
                 ->warning()
-                ->content('Server (ID: '.$this->server_id.') has been destroyed - ('.$notifiable->email.')' );
+                ->content('Server (ID: '.$this->server_id.') has been destroyed - ('.$notifiable->slug().')' );
     }
 
     /**

@@ -55,7 +55,7 @@ class SnapshotDeleted extends Notification
 
         return (new SlackMessage)
                 ->warning()
-                ->content('Snapshot (ID: '.$this->snapshot_id.') has been deleted - ('.$notifiable->email.')' );
+                ->content('Snapshot (ID: '.$this->snapshot_id.') has been deleted - ('.$notifiable->slug().')' );
 
     }
 
