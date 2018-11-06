@@ -1,4 +1,4 @@
-# ![Vultrdash](https://raw.githubusercontent.com/Qoraiche/Vultrdash/master/readme-header-image.png)
+# ![Vultrdash](https://raw.githubusercontent.com/Qoraiche/Vultrdash/master/demo-screenshots/screenshot-1.png)
 
 * Author: Yassine qoraiche (@qoraiche)
 * License: [MIT](https://vultrdash.mit-license.org/)
