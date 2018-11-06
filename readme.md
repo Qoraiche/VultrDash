@@ -124,10 +124,15 @@ Don't forget to add your server ip address to the [access control whitelist](htt
 <a id="credits"></a>
 ## Credits
 
-* [Vultr](//vultr.com/)
-* [Laravel](//laravel.com/)
+* [Vultr](https://vultr.com/)
+* [Laravel](https://laravel.com/)
+* [Slack](https://laravel.com/)
+* [Guzzlehttp](http://docs.guzzlephp.org/en/stable/)
+* [Laravel-activitylog](https://github.com/spatie/laravel-activitylog)
+* [Laravel-gravatar](https://github.com/thomaswelton/laravel-gravatar)
+* [Laravel-messenger](https://github.com/cmgmyr/laravel-messenger)
+* [Laravel-permission](https://github.com/spatie/laravel-permission)
 * [Tabler](http://tabler.github.io/)
-
 
 <a id="security"></a>
 ## Security
