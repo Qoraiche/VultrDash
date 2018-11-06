@@ -1,9 +1,6 @@
 <?php
 
-use Faker\Generator as Faker;
-
 use Illuminate\Database\Seeder;
-
 use Carbon\Carbon;
 
 class UsersTableSeeder extends Seeder
@@ -13,20 +10,19 @@ class UsersTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run( Faker $faker )
+    public function run()
     {
-
         DB::table('users')->insert([
-            'firstname' => $faker->firstname,
-            'lastname' => $faker->lastname,
+            'firstname' => '',
+            'lastname' => '',
             // 'address' => $faker->address,
             // 'city' => $faker->city,
             // 'zipcode' => $faker->postcode,
-            'country' => $faker->country,
+            'country' => '',
             // 'company' => $faker->company,
             // 'email' => $faker->unique()->safeEmail,
-            'email' => 'qoraicheofficiel@hotmail.com',
-            'password' => bcrypt('vbspiders'),
+            'email' => 'admin',
+            'password' => bcrypt('admin'),
             'remember_token' => str_random(10),
             'created_at' => Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon::now()->toDateTimeString()

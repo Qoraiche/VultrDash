@@ -103,7 +103,7 @@ Optimize the configuration Loading
 
     php artisan config:cache
 
-### Database Migrations
+### Database Migrations/seeds
 
 Run the database migrations
 
