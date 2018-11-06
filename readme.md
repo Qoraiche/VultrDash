@@ -108,6 +108,8 @@ Run the database migrations
 
     php artisan migrate
 
+### Run
+
 Once the database is setup and migrations are up, run
 
     php artisan serve
