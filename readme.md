@@ -124,7 +124,7 @@ Don't forget to add your server ip address to the [access control whitelist](htt
 <a id="credits"></a>
 ## Credits
 
-* [Vultr](https://vultr.com/)
+* [Vultr API](https://vultr.com/api)
 * [Laravel](https://laravel.com/)
 * [Slack](https://laravel.com/)
 * [Guzzlehttp](http://docs.guzzlephp.org/en/stable/)
