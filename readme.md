@@ -53,15 +53,20 @@ As this application built with laravel, make sure your server meets the followin
 Install the application dependencies using composer and optimize class autoloader map:
 
     composer install --optimize-autoloader --no-dev
-    
+
+
+Create configuration file:
+
+    cp .env.example .env
+
 Generate key:
 
     php artisan key:generate
-    
+
 Install the Javascript dependencies using NPM:
 
     npm install
-    
+
 ### Configuration
 
 In your configuration file `.env`:
@@ -88,7 +93,7 @@ Fill in your Vultr API key ([Available in Members Area -> settings -> settings a
 Fill in your Slack webhook url to recieve notifications on your channel
 
     NOTIFICATION_SLACK_WEBHOOK_URL=[YOUR_WEBHOOK_URL]
-    
+
 [More info, How to create your slack app](https://api.slack.com/incoming-webhooks)
     
 #### Final configuration step
@@ -96,18 +101,18 @@ Fill in your Slack webhook url to recieve notifications on your channel
 Optimize the configuration Loading
 
     php artisan config:cache
-    
+
 ### Database Migrations
 
 Run the database migrations
 
     php artisan migrate
-    
+
 Once the database is setup and migrations are up, run
 
     php artisan serve
-    
-    
+
+
 ## Note
 
 Don't forget to add your server ip address to the [access control whitelist](https://my.vultr.com/settings/#settingsapi)
