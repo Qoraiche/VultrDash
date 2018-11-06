@@ -22,7 +22,7 @@
 * Users conversations system (Group messaging / One to one messaging)
 * Create and deploy snapshots
 * Manage and deploy servers (vc2)
-* Create and manage ISO
+* Manage and Create ISO
 * Manage and create startup scripts
 * Manage and create SSH keys
 * Manage and create DNS
