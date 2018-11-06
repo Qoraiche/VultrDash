@@ -2,7 +2,7 @@
 
 * Author: Yassine qoraiche (@qoraiche)
 * License: [MIT](https://vultrdash.mit-license.org/)
-* Screenshots: [Vultrdash screenshots](https://github.com/Qoraiche/Vultrdash/blob/master/screenshots.md)
+* Demo Screenshots: [Vultrdash screenshots](https://github.com/Qoraiche/Vultrdash/blob/master/screenshots.md)
 
 # Table of Contents
 
