@@ -115,13 +115,11 @@ Once the database is setup and migrations are up, run
 
     php artisan serve
 
+Now you can visit http://localhost:8000/ to see the application in action.
 
 ## Note
 
 Don't forget to add your server ip address to the [access control whitelist](https://my.vultr.com/settings/#settingsapi)
-    
-Now you can visit http://localhost:8000/ to see the application in action.
-
 
 <a id="credits"></a>
 ## Credits
