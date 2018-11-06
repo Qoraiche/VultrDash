@@ -15,6 +15,23 @@
 <a id="features"></a>
 ## Features
 
+* Multi-User support
+* Limited users access to portions of dashboard
+* Activity logger to monitor users
+* Slack notifications
+* Users conversations system (Group messaging / One to one messaging)
+* Create and deploy snapshots
+* Manage and deploy servers (vc2)
+* Create and manage ISO
+* Manage and create startup scripts
+* Manage and create SSH keys
+* Manage and create DNS
+* Manage and create Reserved IPs
+* Manage Backups
+* Manage and create Block storage
+* Manage firewall
+* Manage networks
+
 <a id="installation"></a>
 ## Installation
 
