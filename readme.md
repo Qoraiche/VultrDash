@@ -24,6 +24,11 @@
 <a id="credits"></a>
 ## Credits
 
+* [Vultr](//vultr.com/)
+* [Laravel](//laravel.com/)
+* [Tabler](http://tabler.github.io/)
+
+
 <a id="security"></a>
 ## Security
 
@@ -32,4 +37,4 @@ If you discover a security vulnerability within this application, please e-mail 
 <a id="license"></a>
 ## License
 
-Vultrdash is licensed under The MIT License (MIT).
+Vultrdash is licensed under [The MIT License (MIT)](https://vultrdash.mit-license.org/).
