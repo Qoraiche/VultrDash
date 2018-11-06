@@ -11,7 +11,6 @@
 * [Credits](#credits)
 * [Security](#security)
 * [License](#license)
-* [Contributing](#contribute)
 
 <a id="features"></a>
 ## Features
@@ -116,10 +115,3 @@ If you discover a security vulnerability within this application, please e-mail 
 ## License
 
 Vultrdash is licensed under [The MIT License (MIT)](https://vultrdash.mit-license.org/).
-
-<a id="contribute"></a>
-## Contributing
-
-First off, thanks for taking the time to contribute!
-
-Please submit your pull request against the `develop` branch only.
