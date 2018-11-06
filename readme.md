@@ -3,6 +3,7 @@
 * Author: Yassine qoraiche (@qoraiche)
 * License: [MIT](https://vultrdash.mit-license.org/)
 * Demo Screenshots: [screenshots.md](https://github.com/Qoraiche/Vultrdash/blob/master/screenshots.md)
+* [Advanced cloud platform starting from 2.50$/m](https://www.vultr.com/?ref=7291225)
 
 # Table of Contents
 
