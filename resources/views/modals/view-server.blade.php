@@ -60,20 +60,15 @@
 
 </div>
 
-<ul class="server-action list-inline mb-0 mt-2 d-none d-lg-block">
-
-  
+<ul class="server-action list-inline mb-0 mt-2 d-none d-lg-block"> 
 <li class="list-inline-item">
-
   <form action="{{ strtolower( $serverInfo->$serverid->power_status ) == 'running' ? url('servers/halt') : url('servers/start') }}" method="post" accept-charset="utf-8">
       @csrf
       <input type="hidden" name="serverid" value="{{ $serverid }}">
       <a class="icon{{ strtolower($serverInfo->$serverid->power_status) == 'running' ? ' halt' : ' startserver'}}" href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="{{ strtolower($serverInfo->$serverid->power_status) == 'running' ? 'Stop Server' : 'Start Server' }}">
       <i class="fe fe-power"></i>
     </a>
-
   </form>
-
 </li>
 
   <li class="list-inline-item">
@@ -83,18 +78,14 @@
         <a class="icon restart" href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="Restart Server">
         <i class="fe fe-refresh-cw"></i>
       </a>
-
     </form>
   </li>
 
   <li class="list-inline-item">
-
       <a href="javascript:void(0)" onclick="window.open('{{ $serverInfo->$serverid->kvm_url }}','','width=600,height=450')" class="icon" data-toggle="tooltip" data-original-title="View Console"><i class="fe fe-terminal"></i></a>
-
   </li>
 
   <li class="list-inline-item">
-
     <form action="{{ url('servers/reinstall') }}" method="post" accept-charset="utf-8">
         @csrf
         <input type="hidden" name="serverid" value="{{ $serverid }}"> 
@@ -102,24 +93,21 @@
     <a href="javascript:void(0)" class="icon reinstall" data-toggle="tooltip" data-original-title="Reinstall Server"><i class="fe fe-disc"></i></a>
 
   </form>
-
   </li>
 
   <li class="list-inline-item">
-
     <form action="{{ url('servers/destroy') }}" method="post" accept-charset="utf-8">
         @csrf
         <input type="hidden" name="serverid" value="{{ $serverid }}"> 
 
     <a href="javascript:void(0)" class="icon destroy" data-toggle="tooltip" data-original-title="Destroy Server"><i class="fe fe-trash-2"></i></a>
-
     </form>
-
   </li>
+
 
 </ul>
 
-<div class="server-action dropdown list-inline mb-0 mt-2 d-lg-none d-xl-none">
+{{-- <div class="server-action dropdown list-inline mb-0 mt-2 d-lg-none d-xl-none">
 
   <a href="javascript:void(0)" data-toggle="dropdown" class="icon"><i class="fe fe-more-vertical"></i></a>
 
@@ -158,7 +146,7 @@
   </form>
 
   </div>
-</div>
+</div> --}}
 
 
 <ul class="server-info-list">
@@ -171,12 +159,12 @@
     <div data-toggle="tooltip" data-placement="top" data-original-title="{{ $serverInfo->$serverid->date_created }}">{{ \Carbon\Carbon::parse($serverInfo->$serverid->date_created)->diffForHumans() }}</div>
   </li>
   
-  <li class="list-inline-item">
-  <a class="icon showpass" href="javascript:void(0)" data-container="body" data-toggle="popover" data-placement="top" data-content="<span><strong>Username:</strong> root</span></br><span><strong>Password:</strong> {{ $serverInfo->$serverid->default_password }}</span>">
-  <i class="fa fa-key"></i>
-  </a>
+  <li>
+      <a class="icon showpass" href="javascript:void(0)" data-container="body" data-toggle="popover" data-placement="top" data-content="<span><strong>Username:</strong> root</span></br><span><strong>Password:</strong> {{ $serverInfo->$serverid->default_password }}</span>">
+      <i class="fa fa-key"></i>
+      </a>
+  </li>
 
-</li>
 </ul>
 
 </div>

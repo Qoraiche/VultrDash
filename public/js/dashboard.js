@@ -22,7 +22,7 @@ paths: {
 'vector-map-de': '../js/vendors/jquery-jvectormap-de-merc',
 'vector-map-world': '../js/vendors/jquery-jvectormap-world-mill',
 'circle-progress': '../js/vendors/circle-progress.min',
-'pace': '../js/vendors/pace.min.js',
+'pace': '../js/vendors/pace.min.js'
 }
 
 });
