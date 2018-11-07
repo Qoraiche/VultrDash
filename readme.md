@@ -129,7 +129,7 @@ Don't forget to change the default email and password when you logged in!
 
 ## Note
 
-Add your server ip address to the [access control whitelist](https://my.vultr.com/settings/#settingsapi)
+Remember to add your server ip address to the [access control whitelist](https://my.vultr.com/settings/#settingsapi)
 
 <a id="security"></a>
 ## Security
