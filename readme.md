@@ -109,6 +109,10 @@ Run the database migrations
 
     php artisan migrate
 
+Seed database
+
+    php artisan db:seed
+
 ### Run
 
 Once the database is setup and migrations are up, run
@@ -117,9 +121,16 @@ Once the database is setup and migrations are up, run
 
 Now you can visit http://localhost:8000/ to see the application in action.
 
+Default login credentials:
+
+    email   :    admin@example.com
+    password:    admin
+
+Don't forget to change the default email and password when you logged in!
+
 ## Note
 
-Don't forget to add your server ip address to the [access control whitelist](https://my.vultr.com/settings/#settingsapi)
+Add your server ip address to the [access control whitelist](https://my.vultr.com/settings/#settingsapi)
 
 <a id="credits"></a>
 ## Credits
