@@ -112,7 +112,7 @@ Seed database
 
     php artisan db:seed
 
-### Run
+### Serve
 
 Once the database is setup and migrations are up, run
 
