@@ -9,7 +9,6 @@
 
 * [Features](#features)
 * [Installation](#installation)
-* [Credits](#credits)
 * [Security](#security)
 * [License](#license)
 
@@ -131,19 +130,6 @@ Don't forget to change the default email and password when you logged in!
 ## Note
 
 Add your server ip address to the [access control whitelist](https://my.vultr.com/settings/#settingsapi)
-
-<a id="credits"></a>
-## Credits
-
-* [Vultr API](https://vultr.com/api)
-* [Laravel](https://laravel.com/)
-* [Slack](https://laravel.com/)
-* [Guzzlehttp](http://docs.guzzlephp.org/en/stable/)
-* [Laravel-activitylog](https://github.com/spatie/laravel-activitylog)
-* [Laravel-gravatar](https://github.com/thomaswelton/laravel-gravatar)
-* [Laravel-messenger](https://github.com/cmgmyr/laravel-messenger)
-* [Laravel-permission](https://github.com/spatie/laravel-permission)
-* [Tabler](http://tabler.github.io/)
 
 <a id="security"></a>
 ## Security
