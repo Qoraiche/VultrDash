@@ -37,7 +37,7 @@
 
 ### Requirements
 
-As this application built with laravel, make sure your server meets the following requirements:
+Make sure your server meets the following requirements:
 
 * PHP >= 7.1.3
 * OpenSSL PHP Extension
