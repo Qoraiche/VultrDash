@@ -54,10 +54,9 @@ Clone the repository:
 
     git clone https://github.com/Qoraiche/Vultrdash.git
 
-Install the application dependencies using composer and optimize class autoloader map:
+Install application dependencies and optimize class autoloader map:
 
     composer install --optimize-autoloader --no-dev
-
 
 Create configuration file:
 
@@ -88,17 +87,17 @@ Fill in your database details:
 
 #### Vultr API (Required)
 
-Fill in your Vultr API key ([Available in Members Area -> settings -> settings api](https://my.vultr.com/settings/#settingsapi))
+Add your Vultr API key ([Available in Members Area -> settings -> settings api](https://my.vultr.com/settings/#settingsapi))
 
     VULTR_AUTHKEY=[YOUR_API_KEY]
 
 #### Slack Notifications (Optional)
 
-Fill in your Slack webhook url to recieve notifications on your channel
+Add your Slack webhook url to recieve notifications on your channel
 
     NOTIFICATION_SLACK_WEBHOOK_URL=[YOUR_WEBHOOK_URL]
 
-[More info, How to create your slack app](https://api.slack.com/incoming-webhooks)
+More info, [How to create your slack app](https://api.slack.com/incoming-webhooks)
     
 #### Final configuration step
 
