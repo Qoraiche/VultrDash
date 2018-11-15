@@ -50,6 +50,10 @@ Make sure your server meets the following requirements:
 
 ### Install
 
+Clone the repository:
+
+    git clone https://github.com/Qoraiche/Vultrdash.git
+
 Install the application dependencies using composer and optimize class autoloader map:
 
     composer install --optimize-autoloader --no-dev
