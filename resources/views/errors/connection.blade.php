@@ -7,7 +7,7 @@
       <h1 class="h2 mb-4">Unable to Connect to Vultr API</h1>
   <p class="h4 text-muted font-weight-normal mb-2">The pae will load in <span class="remaining-sec">10</span> seconds…</p>
 
-      @if ( !empty($error) )
+      @isset($error)
 
         <span class="d-block mb-4">
             <small><strong>Error: </strong>
@@ -15,7 +15,7 @@
             </small>
         </span>
 
-      @endif
+      @endisset
 
       <a class="btn btn-primary" id="tryagain" href="{{ url('/refresh') }}" onclick="$(this).addClass('btn-loading');">
         <i class="fe fe-arrow-left mr-2"></i>Try Again Now
