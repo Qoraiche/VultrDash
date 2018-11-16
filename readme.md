@@ -9,6 +9,7 @@
 
 * [Features](#features)
 * [Installation](#installation)
+* [Todo](#todos)
 * [Security](#security)
 * [License](#license)
 
@@ -133,6 +134,13 @@ Don't forget to change the default email and password when you logged in!
 ## Note
 
 Remember to add your server ip address to the [access control whitelist](https://my.vultr.com/settings/#settingsapi)
+
+<a id="todo"></a>
+## Todo
+* Bare Metal servers (deploy, manage)
+* Real-time messaging using laravel echo
+* Firewall groups editing (IPv4, IPv6 rules)
+* Manage Private Networks
 
 <a id="security"></a>
 ## Security
