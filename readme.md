@@ -9,7 +9,7 @@
 
 * [Features](#features)
 * [Installation](#installation)
-* [Todo](#todos)
+* [Todo](#todo)
 * [Security](#security)
 * [License](#license)
 
