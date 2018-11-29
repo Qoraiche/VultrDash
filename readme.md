@@ -36,6 +36,9 @@
 <a id="installation"></a>
 ## Installation
 
+1. [Install Vultrdash with Nginx Server on Centos 7](https://github.com/Qoraiche/Vultrdash/wiki/Install-on-Centos-7)
+2. [Install Vultrdash with Nginx Server on Ubuntu 18.04](https://github.com/Qoraiche/Vultrdash/wiki/Install-on-Ubuntu-18.04)
+
 ### Requirements
 
 Make sure your server meets the following requirements:
