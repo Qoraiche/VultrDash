@@ -28,9 +28,14 @@
 
     @if( !auth()->user()->can('manage iso') )
 
-      <div class="card-alert alert alert-warning mb-0">
+      {{-- <div class="card-alert alert alert-warning mb-0">
           <i class="fe fe-lock" title="fe fe-lock"></i> <strong>Forbidden!</strong> You don't have permission to manage ISO.
-        </div>
+        </div> --}}
+
+        @alert([ 'type' => 'warning', 'card', 'classes' => 'mb-0'])
+                You don't have permission to manage ISOs.
+        @endalert
+
 
     @endif
 
@@ -87,7 +92,11 @@
 
             @empty
             
-                <div class="alert alert-info">No ISO's</div>
+                {{-- <div class="alert alert-info">No ISO's</div> --}}
+
+                @alert([ 'type' => 'info'])
+                  No ISOs
+                @endalert
 
             @endforelse
 

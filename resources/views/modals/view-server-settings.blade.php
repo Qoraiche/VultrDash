@@ -50,13 +50,21 @@
 
                 @if ( Session::has('firewall_message') )
 
-                          <div class="alert alert-info">{!! session( 'firewall_message' ) !!}</div>
+                          {{-- <div class="alert alert-info">{!! session( 'firewall_message' ) !!}</div> --}}
+
+                    @alert([ 'type' => 'info'])
+                       {!! session( 'firewall_message' ) !!}
+                    @endalert
 
                     @endif
 
                     @if ( Session::has('firewall_error') )
 
-                          <div class="alert alert-warning">{!! session( 'firewall_error' ) !!}</div>
+                          {{-- <div class="alert alert-warning">{!! session( 'firewall_error' ) !!}</div> --}}
+
+                          @alert([ 'type' => 'warning'])
+                       {!! session( 'firewall_error' ) !!}
+                    @endalert
 
                     @endif
 
@@ -107,13 +115,20 @@
 
                   @if ( Session::has('iso_message') )
 
-                          <div class="alert alert-info">{!! session( 'iso_message' ) !!}</div>
+                          {{-- <div class="alert alert-info">{!! session( 'iso_message' ) !!}</div> --}}
+
+                          @alert([ 'type' => 'info'])
+                             {!! session( 'iso_message' ) !!}
+                          @endalert
 
                     @endif
 
                     @if ( Session::has('iso_error') )
+                          {{-- <div class="alert alert-warning">{!! session( 'iso_error' ) !!}</div> --}}
 
-                          <div class="alert alert-warning">{!! session( 'iso_error' ) !!}</div>
+                          @alert([ 'type' => 'warning'])
+                             {!! session( 'iso_error' ) !!}
+                          @endalert
 
                     @endif
 
@@ -239,13 +254,19 @@
 
               @if ( Session::has('label_tag_message') )
 
-                          <div class="alert alert-info">{!! session( 'label_tag_message' ) !!}</div>
+                          {{-- <div class="alert alert-info">{!! session( 'label_tag_message' ) !!}</div> --}}
+
+                          @alert([ 'type' => 'info'])
+                             {!! session( 'label_tag_message' ) !!}
+                          @endalert
 
                     @endif
 
                     @if ( Session::has('label_tag_error') )
 
-                          <div class="alert alert-warning">{!! session( 'label_tag_error' ) !!}</div>
+                          @alert([ 'type' => 'warning'])
+                             {!! session( 'label_tag_error' ) !!}
+                          @endalert
 
                     @endif
               

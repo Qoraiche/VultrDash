@@ -36,13 +36,21 @@
 
 @if ( Session::has('message') )
 
-            <div class="alert alert-info">{!! session( 'message' ) !!}</div>
+            {{-- <div class="alert alert-info">{!! session( 'message' ) !!}</div> --}}
+
+            @alert([ 'type' => 'info'])
+                {!! session( 'message' ) !!}
+            @endalert
 
             @endif
 
             @if ( Session::has('error') )
 
-                  <div class="alert alert-warning">{!! session( 'error' ) !!}</div>
+                  {{-- <div class="alert alert-warning">{!! session( 'error' ) !!}</div> --}}
+
+            @alert([ 'type' => 'warning'])
+                {!! session( 'error' ) !!}
+            @endalert
 
             @endif
 
@@ -70,7 +78,11 @@
 
             @empty
 
-                <div class="alert alert-info">{{ __('No backups') }}</div>
+                {{-- <div class="alert alert-info">{{ __('No backups') }}</div> --}}
+
+                @alert([ 'type' => 'info'])
+                   No backups
+                @endalert
 
             @endforelse
 

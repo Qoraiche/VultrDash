@@ -12,9 +12,14 @@
       <div class="authentication-form">
 
         @if (session('status'))
-            <div class="alert alert-success">
+            {{-- <div class="alert alert-success">
                 {{ session('status') }}
-            </div>
+            </div> --}}
+
+            @alert([ 'type' => 'success'])
+              {!! session( 'status' ) !!}
+            @endalert
+
         @endif
 
         <form method="POST" action="{{ url('/password/email') }}">

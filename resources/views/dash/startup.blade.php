@@ -12,10 +12,10 @@
   </h1>
 </div>
 
-      <div class="row">
-      <div class="col-lg-3 order-lg-1 mb-4">
+  <div class="row">
+  <div class="col-lg-3 order-lg-1 mb-4">
 
-      <a href="{{ url('startup/add') }}" class="btn btn-block btn-primary @if( !auth()->user()->can('manage startupscripts') ) btn-secondary disabled @endif mb-6">
+  <a href="{{ url('startup/add') }}" class="btn btn-block btn-primary @if( !auth()->user()->can('manage startupscripts') ) btn-secondary disabled @endif mb-6">
             Add Startup Script
   </a>
 
@@ -32,9 +32,13 @@
 
         @if( !auth()->user()->can('manage startupscripts') )
 
-          <div class="card-alert alert alert-warning mb-0">
+          {{-- <div class="card-alert alert alert-warning mb-0">
               <i class="fe fe-lock" title="fe fe-lock"></i> <strong>Forbidden!</strong> You don't have permission to manage startup scripts.
-            </div>
+            </div> --}}
+
+        @alert([ 'type' => 'warning', 'card', 'classes' => 'mb-0'])
+          You don't have permission to manage startup scripts.
+        @endalert
 
          @endif
 
@@ -101,7 +105,11 @@
 
             @empty
 
-                <div class="alert alert-info">{{ __('No Startup Scripts') }}</div>
+                {{-- <div class="alert alert-info">{{ __('No Startup Scripts') }}</div> --}}
+
+                @alert([ 'type' => 'info'])
+                  No Startup Scripts
+                @endalert
 
             @endforelse
 

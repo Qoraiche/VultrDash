@@ -24,7 +24,11 @@
               <div class="card-body">
                 @if (Session::has('message'))
 
-                     <div class="alert alert-info">{!! session('message') !!}</div>
+                     {{-- <div class="alert alert-info">{!! session('message') !!}</div> --}}
+
+                    @alert([ 'type' => 'info'])
+                        {!! session('message') !!}
+                    @endalert
 
                @endif
                 <form action="{{ url('snapshots/createfromurl') }}" method="POST" accept-charset="utf-8">

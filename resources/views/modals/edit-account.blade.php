@@ -16,14 +16,20 @@
     <div class="card-body">
 
       @if ( Session::has('status') )
+            {{-- <div class="alert alert-success"><i class="fe fe-check mr-2" aria-hidden="true"></i> {!! session( 'status' ) !!}</div> --}}
 
-            <div class="alert alert-success"><i class="fe fe-check mr-2" aria-hidden="true"></i> {!! session( 'status' ) !!}</div>
+            @alert([ 'type' => 'success'])
+              {!! session('status') !!}
+            @endalert
 
       @endif
 
       @if ( Session::has('warning') )
+           {{--  <div class="alert alert-warning"><i class="fe fe-alert-triangle mr-2" aria-hidden="true"></i> {!! session( 'warning' ) !!}</div> --}}
 
-            <div class="alert alert-warning"><i class="fe fe-alert-triangle mr-2" aria-hidden="true"></i> {!! session( 'warning' ) !!}</div>
+            @alert([ 'type' => 'warning'])
+              {!! session('warning') !!}
+            @endalert
 
       @endif
       
@@ -130,14 +136,20 @@
     <div class="card-body">
 
       @if ( Session::has('passemail_status') )
+            {{-- <div class="alert alert-success"><i class="fe fe-check mr-2" aria-hidden="true"></i> {!! session( 'passemail_status' ) !!}</div> --}}
 
-            <div class="alert alert-success"><i class="fe fe-check mr-2" aria-hidden="true"></i> {!! session( 'passemail_status' ) !!}</div>
+            @alert([ 'type' => 'success'])
+              {!! session('passemail_status') !!}
+            @endalert
 
       @endif
 
       @if ( Session::has('passemail_status_error') )
+            {{-- <div class="alert alert-warning"><i class="fe fe-alert-triangle mr-2" aria-hidden="true"></i> {!! session( 'passemail_status_error' ) !!}</div> --}}
 
-            <div class="alert alert-warning"><i class="fe fe-alert-triangle mr-2" aria-hidden="true"></i> {!! session( 'passemail_status_error' ) !!}</div>
+            @alert([ 'type' => 'warning'])
+              {!! session('passemail_status_error') !!}
+            @endalert
 
       @endif
 
@@ -164,9 +176,7 @@
             <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" type="password">
 
             @if ($errors->has('password'))
-
               <div class="invalid-feedback" style="margin-top: 10px;">{{ $errors->first('password') }}</div>
-              
             @endif
 
           </div>
@@ -178,9 +188,7 @@
             <input class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}" name="password_confirmation" type="password">
 
             @if ($errors->has('password_confirmation'))
-
               <div class="invalid-feedback" style="margin-top: 10px;">{{ $errors->first('password_confirmation') }}</div>
-
             @endif
 
           </div>

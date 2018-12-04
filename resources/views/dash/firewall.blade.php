@@ -25,9 +25,14 @@
 
           @if( !auth()->user()->can('manage firewalls') )
 
-            <div class="card-alert alert alert-warning mb-0">
+            {{-- <div class="card-alert alert alert-warning mb-0">
                 <i class="fe fe-lock" title="fe fe-lock"></i> <strong>Forbidden!</strong> You don't have permission to manage Firewalls.
-              </div>
+              </div> --}}
+
+
+              @alert([ 'type' => 'warning', 'card', 'classes' => 'mb-0'])
+                You don't have permission to manage Firewalls.
+              @endalert
 
           @endif
 
@@ -94,7 +99,11 @@
 
           @empty
 
-                <div class="alert alert-info">{{ __('No Firewall Groups') }}</div>
+                {{-- <div class="alert alert-info">{{ __('No Firewall Groups') }}</div> --}}
+
+                @alert([ 'type' => 'info'])
+                  No Firewall Groups
+                @endalert
 
             @endforelse
 

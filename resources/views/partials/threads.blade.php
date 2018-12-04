@@ -11,7 +11,12 @@
 </div>
 
 @if ( Session::has('success') )
-    <div class="alert alert-success">{!! session( 'success' ) !!}</div>
+    {{-- <div class="alert alert-success">{!! session( 'success' ) !!}</div> --}}
+
+    @alert([ 'type' => 'success'])
+      {!! session( 'success' ) !!}
+    @endalert
+
 @endif
 
 <div class="card">
@@ -106,7 +111,11 @@
 
 	<li class="list-group-item">    
 
-    	<div class="alert alert-info">You have not received any messages at this time</div>
+    {{-- <div class="alert alert-info">You have not received any messages at this time</div> --}}
+
+      @alert([ 'type' => 'info'])
+        {!! session( 'success' ) !!}
+      @endalert
 
 	</li>
 

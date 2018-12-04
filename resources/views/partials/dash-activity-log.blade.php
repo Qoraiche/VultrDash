@@ -19,15 +19,24 @@
                   </div>
 
                   @if ( Session::has('status_activitylog') )
-                    <div class="card-alert alert alert-success mb-0">
+                    {{-- <div class="card-alert alert alert-success mb-0">
                         <i class="fe fe-check mr-2" aria-hidden="true"></i>{!! session( 'status_activitylog' ) !!}
-                    </div>
+                    </div> --}}
+
+                    @alert([ 'type' => 'success', 'card', 'classes' => 'mb-0'])
+                      {!! session( 'status_activitylog' ) !!}
+                    @endalert
+
                   @endif
 
                   @if ( Session::has('error_activitylog') )
-                    <div class="card-alert alert alert-danger mb-0">
+                    {{-- <div class="card-alert alert alert-danger mb-0">
+                      {!! session( 'error_activitylog' ) !!}
+                    </div> --}}
+
+                    @alert([ 'type' => 'danger', 'card', 'classes' => 'mb-0'])
                         {!! session( 'error_activitylog' ) !!}
-                    </div>
+                    @endalert
                   @endif
 
                   @if ( !$activity_chart_data->isEmpty() )
@@ -65,9 +74,12 @@
                           @endhasrole
                         </tr>
                         @empty
-                          <div class="alert alert-info">
-                            No activity log
-                          </div>
+                          @alert([ 'type' => 'info'])
+
+                            No activity logs
+
+                          @endalert
+
                         @endforelse
                       </tbody>
                     </table>

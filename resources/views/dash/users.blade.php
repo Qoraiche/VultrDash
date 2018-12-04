@@ -19,7 +19,7 @@
 
     @hasrole('super-admin')
       <a href="{{ url('users/create') }}" class="btn btn-block btn-primary mb-6">
-              New User
+        New User
       </a>
     @endhasrole
 
@@ -51,15 +51,17 @@
   <div class="table-responsive">
 
     @if ( Session::has('status') )
-
-            <div class="alert alert-success"><i class="fe fe-check mr-2" aria-hidden="true"></i> {!! session( 'status' ) !!}</div>
-
+           {{-- <div class="alert alert-success"><i class="fe fe-check mr-2" aria-hidden="true"></i> {!! session( 'status' ) !!}</div> --}}
+            @alert( [ 'type' => 'success'] )
+              {!! session( 'status' ) !!}
+            @endalert
       @endif
 
       @if ( Session::has('warning') )
-
-            <div class="alert alert-warning"><i class="fe fe-alert-triangle mr-2" aria-hidden="true"></i> {!! session( 'warning' ) !!}</div>
-
+           {{--  <div class="alert alert-warning"><i class="fe fe-alert-triangle mr-2" aria-hidden="true"></i> {!! session( 'warning' ) !!}</div> --}}
+           @alert( [ 'type' => 'warning'] )
+              {!! session( 'warning' ) !!}
+            @endalert
       @endif
 
 

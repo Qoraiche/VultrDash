@@ -28,9 +28,13 @@
 
     @if( !auth()->user()->can('manage snapshots') )
 
-      <div class="card-alert alert alert-warning mb-0">
+      {{-- <div class="card-alert alert alert-warning mb-0">
           <i class="fe fe-lock" title="fe fe-lock"></i> <strong>Forbidden!</strong> You don't have permission to manage snapshots.
-        </div>
+        </div> --}}
+
+        @alert([ 'type' => 'warning', 'card', 'classes' => 'mb-0'])
+          You don't have permission to manage snapshots.
+        @endalert
 
     @endif
 
@@ -129,7 +133,11 @@
 
             @empty
 
-                <div class="alert alert-info">No snapshots</div>
+                {{-- <div class="alert alert-info">No snapshots</div> --}}
+
+                @alert([ 'type' => 'info'])
+                  No snapshots
+                @endalert
 
             @endforelse
 

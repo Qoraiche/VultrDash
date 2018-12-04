@@ -27,7 +27,12 @@
                 <input type="email" id="email" name="email" placeholder="Email" class="form-control" value="{{ old('email') }}" required/>
                 @if ($errors->has('email'))
 
-                  <div class="alert alert-warning" style="margin-top: 10px;">{{ $errors->first('email') }}</div>
+                  {{-- <div class="alert alert-warning" style="margin-top: 10px;">{{ $errors->first('email') }}</div> --}}
+
+                  @alert([ 'type' => 'warning'])
+                    {{ $errors->first('email') }}
+                  @endalert
+
                 @endif
           </div>
           <div class="form-group">
@@ -40,7 +45,12 @@
                 <input type="password" id="password" name="password" placeholder="Password" class="form-control" required/>
                 @if ($errors->has('password'))
 
-                  <div class="alert alert-warning" style="margin-top: 10px;">{{ $errors->first('password') }}</div>
+                  {{-- <div class="alert alert-warning" style="margin-top: 10px;">{{ $errors->first('password') }}</div> --}}
+
+                  @alert([ 'type' => 'warning'])
+                    {{ $errors->first('password') }}
+                  @endalert
+
                 @endif
           </div>
           <div class="form-group">
@@ -53,7 +63,12 @@
                 <input type="password" id="password_confirm" name="password_confirmation" placeholder="Confirm Password" class="form-control" required/>
                 @if ($errors->has('password_confirmation'))
 
-                  <div class="alert alert-warning" style="margin-top: 10px;">{{ $errors->first('password_confirmation') }}</div>
+                  {{-- <div class="alert alert-warning" style="margin-top: 10px;">{{ $errors->first('password_confirmation') }}</div> --}}
+
+                  @alert([ 'type' => 'warning'])
+                    {{ $errors->first('password_confirmation') }}
+                  @endalert
+
                 @endif
           </div>
 

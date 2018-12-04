@@ -208,9 +208,13 @@ require(['c3', 'jquery'], function(c3, $) {
 
                   @empty
 
-                    <div class="alert alert-info">
+                   {{-- <div class="alert alert-info">
                       No activity
-                    </div>
+                    </div> --}}
+
+                    @alert([ 'type' => 'info'])
+                       No activity
+                    @endalert
 
                   @endforelse
         

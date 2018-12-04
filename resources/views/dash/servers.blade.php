@@ -26,9 +26,13 @@
 
       @if( !auth()->user()->can('manage servers') )
 
-          <div class="card-alert alert alert-warning mb-0">
+          {{-- <div class="card-alert alert alert-warning mb-0">
               <i class="fe fe-lock" title="fe fe-lock"></i> <strong>Forbidden!</strong> You don't have permission to manage servers.
-          </div>
+          </div> --}}
+
+        @alert([ 'type' => 'warning', 'card', 'classes' => 'mb-0'])
+          You don't have permission to manage Servers.
+        @endalert
 
       @endif
 
@@ -172,7 +176,11 @@
 
                 @empty
 
-                    <div class="alert alert-info">No servers</div>
+                    {{-- <div class="alert alert-info">No servers</div> --}}
+
+                    @alert([ 'type' => 'info'])
+                      No servers
+                    @endalert
 
                 @endforelse
 

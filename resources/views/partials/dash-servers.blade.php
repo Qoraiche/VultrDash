@@ -16,12 +16,15 @@
                       </div>
                     </div>
                   </div>
-                  @if( !auth()->user()->can('manage servers') )
-                      
-                      <div class="alert alert-warning mb-0">
-                        You cannot manage servers
-                      </div>
 
+                  @if( !auth()->user()->can('manage servers') )
+                      {{-- <div class="alert alert-warning mb-0">
+                        You cannot manage servers
+                      </div> --}}
+
+                      @alert([ 'type' => 'warning', 'classes' => 'mb-0'])
+                        You cannot manage servers
+                      @endalert
                     @endif
 
                 @can('manage servers')
@@ -147,9 +150,9 @@
                         </tr>
 
                         @empty
-
-                          <div class="alert alert-info"><strong>No servers!</strong>, <a href="{{ url('servers/add') }}">deploy a new server.</a></div>
-
+                          @alert([ 'type' => 'info' ])
+                                No Servers found
+                          @endalert
                         @endforelse
 
                       </tbody>

@@ -59,7 +59,10 @@
 
                                   @if (Session::has('message'))
 
-                                      <div class="alert alert-warning">{!! session('message') !!}</div>
+                                      {{-- <div class="alert alert-warning">{!! session('message') !!}</div> --}}
+                                      @alert([ 'type' => 'warning'])
+                                        {!! session('message') !!}
+                                      @endalert
 
                                   @endif
 

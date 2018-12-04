@@ -64,7 +64,9 @@
 
 	  	@if ( Session::has('success_message') )
         
-            <div class="alert alert-success mb-4"><i class="fe fe-check mr-2" aria-hidden="true"></i> {!! session('success_message') !!}</div>
+            @alert([ 'type' => 'success'])
+            	{!! session('success_message') !!}
+          	@endalert
 
        @endif
 

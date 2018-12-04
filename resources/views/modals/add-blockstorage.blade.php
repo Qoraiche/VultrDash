@@ -22,7 +22,11 @@
 
               @if (Session::has('message'))
 
-                     <div class="alert alert-info">{!! session('message') !!}</div>
+                     {{-- <div class="alert alert-info">{!! session('message') !!}</div> --}}
+
+                     @alert([ 'type' => 'info'])
+                        {!! session('message') !!}
+                     @endalert
 
                @endif
 
@@ -42,7 +46,12 @@
                             >{{ $region['country'] }} - {{ $region['name'] }}</option>
 
                           @empty
-                          <div class="alert alert-info">{{ __('No Block Storage') }}</div>
+                          {{-- <div class="alert alert-info">{{ __('No Block Storage') }}</div> --}}
+
+                          @alert([ 'type' => 'info'])
+                              No Block Storage
+                          @endalert
+
                           @endforelse
                         </select>
                           
