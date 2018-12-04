@@ -37,10 +37,18 @@
 <a id="installation"></a>
 ## Installation
 
+### Links
+
 1. [Install Vultrdash with Nginx Server on Centos 7](https://github.com/Qoraiche/Vultrdash/wiki/Install-on-Centos-7)
 2. [Install Vultrdash with Nginx Server on Ubuntu 18.04](https://github.com/Qoraiche/Vultrdash/wiki/Install-on-Ubuntu-18.04)
 
-### Requirements
+### Video tutorial
+
+[![Group-3.png](https://i.postimg.cc/j5QJWBsc/Group-3.png)](https://www.youtube.com/watch?v=Nq_GmYFHeRs)
+
+### Serve
+
+#### Requirements
 
 Make sure your server meets the following requirements:
 
@@ -53,7 +61,7 @@ Make sure your server meets the following requirements:
 * Ctype PHP Extension
 * JSON PHP Extension
 
-### Install
+#### Install
 
 Clone the repository:
 
@@ -75,11 +83,11 @@ Install the Javascript dependencies using NPM:
 
     npm install
 
-### Configuration
+#### Configuration
 
 In your configuration file `.env`:
 
-#### Database
+##### Database
 
 Fill in your database details:
 
@@ -90,13 +98,13 @@ Fill in your database details:
     DB_USERNAME=[YOUR_DB_USERNAME]
     DB_PASSWORD=[YOUR_DB_PASSWORD]
 
-#### Vultr API (Required)
+##### Vultr API (Required)
 
 Add your Vultr API key ([Available in Members Area -> settings -> settings api](https://my.vultr.com/settings/#settingsapi))
 
     VULTR_AUTHKEY=[YOUR_API_KEY]
 
-#### Slack Notifications (Optional)
+##### Slack Notifications (Optional)
 
 Add your Slack webhook url to recieve notifications on your channel
 
@@ -104,13 +112,13 @@ Add your Slack webhook url to recieve notifications on your channel
 
 More info, [How to create your slack app](https://api.slack.com/incoming-webhooks)
     
-#### Final configuration step
+##### Final configuration step
 
 Optimize the configuration Loading
 
     php artisan config:cache
 
-### Database Migrations/seeds
+#### Database Migrations/seeds
 
 Run the database migrations
 
@@ -120,7 +128,7 @@ Seed database
 
     php artisan db:seed
 
-### Serve
+#### Serve
 
 Once the database is setup and migrations are up, run
 
