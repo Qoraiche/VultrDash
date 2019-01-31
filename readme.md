@@ -4,7 +4,7 @@
 * Author: Yassine qoraiche (@qoraiche)
 * License: [MIT](https://vultrdash.mit-license.org/)
 * Demo Screenshots: [screenshots.md](https://github.com/Qoraiche/Vultrdash/blob/master/screenshots.md)
-* [Get your Vultr VPS from 2.50$/m](https://www.vultr.com/?ref=7580202)
+* [Get your Free Vultr 50$ Credit Now (Limited time)](https://www.vultr.com/?ref=7802459-4F)
 
 # Table of Contents
 
