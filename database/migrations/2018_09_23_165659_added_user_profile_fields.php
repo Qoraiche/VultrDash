@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class AddedUserProfileFields extends Migration
 {
@@ -14,7 +14,6 @@ class AddedUserProfileFields extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-
             $table->string('firstname')->after('email')->nullable();
             $table->string('lastname')->after('firstname')->nullable();
             // $table->text('address')->after('lastname')->nullable();
@@ -22,7 +21,6 @@ class AddedUserProfileFields extends Migration
             // $table->char('zipcode')->after('city')->nullable();
             $table->string('country')->after('lastname')->nullable();
             // $table->string('company')->after('country')->nullable();
-
         });
     }
 
@@ -34,7 +32,6 @@ class AddedUserProfileFields extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            
             $table->dropColumn('firstname');
             $table->dropColumn('lastname');
             // $table->dropColumn('address');

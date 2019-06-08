@@ -1,24 +1,20 @@
 <?php
 
 namespace vultrui\Providers;
-use vultrui\VultrLib\Account;
-use Illuminate\Support\Facades\View;
+
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
-
+use vultrui\VultrLib\Account;
 
 class AppServiceProvider extends ServiceProvider
 {
-
     /**
      * Bootstrap any application services.
      *
      * @return void
      */
-
-    public function boot( Account $account)
+    public function boot(Account $account)
     {
-
         Blade::component('components.alert', 'alert');
     }
 
@@ -27,10 +23,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    
     public function register()
     {
-        
     }
-    
 }

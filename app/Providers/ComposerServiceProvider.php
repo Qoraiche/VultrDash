@@ -5,9 +5,7 @@ namespace vultrui\Providers;
 use Illuminate\Support\ServiceProvider;
 
 class ComposerServiceProvider extends ServiceProvider
-
 {
-
     /**
      * Bootstrap services.
      *
@@ -29,5 +27,4 @@ class ComposerServiceProvider extends ServiceProvider
     {
         //
     }
-
 }

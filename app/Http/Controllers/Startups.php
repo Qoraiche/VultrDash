@@ -2,68 +2,57 @@
 
 namespace vultrui\Http\Controllers;
 
-use Illuminate\Support\Facades\Notification;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use vultrui\Notifications\StartupScriptAdded;
 use vultrui\Notifications\StartupScriptDeleted;
-use vultrui\VultrLib\Startup;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Http\Request;
 use vultrui\User;
-use Illuminate\Support\Facades\Auth;
+use vultrui\VultrLib\Startup;
 
 class Startups extends Controller
 {
+    protected $vultr;
 
-	protected $vultr;
-
-	public function __construct(Startup $vultr)
-
-	{
-
-		$this->vultr = $vultr;
-
-	}
+    public function __construct(Startup $vultr)
+    {
+        $this->vultr = $vultr;
+    }
 
     public function index()
-    {	
+    {
+        $View = view('dash.startup')->with('scripts', $this->vultr->list());
 
-    	$View = view('dash.startup')->with( 'scripts', $this->vultr->list() );
-        
-
-        if ( array_key_exists( 'error', $this->vultr->list() ) ) {
-
-            return view('errors.connection')->with('error' , $this->vultr->list()['error'] );
+        if (array_key_exists('error', $this->vultr->list())) {
+            return view('errors.connection')->with('error', $this->vultr->list()['error']);
         }
-        
-        return $View;
 
+        return $View;
     }
 
     public function add()
     {
-
         return view('modals.add-startup');
     }
 
-    public function create( Request $request )
+    public function create(Request $request)
     {
-
-        $user = User::findOrFail( Auth::id() );
+        $user = User::findOrFail(Auth::id());
 
         $data = [
-            'name' => $request->name,
+            'name'   => $request->name,
             'script' => $request->script,
-            'type' => $request->type,
+            'type'   => $request->type,
         ];
 
-        $results = $this->vultr->create( array(), $data );
+        $results = $this->vultr->create([], $data);
 
-        if ( !in_array('error', $results ) && isset( $results['SCRIPTID'] ) ) {
+        if (!in_array('error', $results) && isset($results['SCRIPTID'])) {
 
             // clear cache
             Cache::forget('startups');
 
-            $scriptInfo = $this->vultr->list()[ $results['SCRIPTID'] ];
+            $scriptInfo = $this->vultr->list()[$results['SCRIPTID']];
 
             // $user->notify( new StartupScriptAdded( $scriptInfo ) );
 
@@ -72,63 +61,52 @@ class Startups extends Controller
                 'name' => $request->name,
                 'type' => $request->type,
 
-            ])->log( __( 'Create startup script' ) );
+            ])->log(__('Create startup script'));
 
             // redirect and flush session
-            return redirect('startup')->with( ['type' => 'success', 'message' => 'Startup Script added' ]);
-
+            return redirect('startup')->with(['type' => 'success', 'message' => 'Startup Script added']);
         }
 
-        if ( isset( $results['error'] ) )
-
-            if (preg_match( '/response:\s(.*)/i', $results['error'], $matches) ) {
-
-                return redirect('startup/add')->with( ['type' => 'error', 'message' => str_replace('response:', null, $matches[0] ) ] );
+        if (isset($results['error'])) {
+            if (preg_match('/response:\s(.*)/i', $results['error'], $matches)) {
+                return redirect('startup/add')->with(['type' => 'error', 'message' => str_replace('response:', null, $matches[0])]);
             }
+        }
 
-            return redirect('startup/add')->with( ['type' => 'error', 'message' => $results['error'] ] );
+        return redirect('startup/add')->with(['type' => 'error', 'message' => $results['error']]);
     }
 
-    public function destroy( Request $request )
+    public function destroy(Request $request)
     {
-
-        $user = User::findOrFail( Auth::id() );
-
+        $user = User::findOrFail(Auth::id());
 
         $data = [
             'SCRIPTID' => $request->scriptid,
         ];
 
-        $destroyRes = $this->vultr->destroy( array(), $data );
+        $destroyRes = $this->vultr->destroy([], $data);
 
-        if ( !isset( $destroyRes['error'] ) ) {
+        if (!isset($destroyRes['error'])) {
 
             // clear cache
             Cache::forget('startups');
 
-            $user->notify( new StartupScriptDeleted( $request->scriptid ) );
+            $user->notify(new StartupScriptDeleted($request->scriptid));
 
             activity()->withProperties([
 
-                'script_id' => $request->scriptid
+                'script_id' => $request->scriptid,
 
-            ])->log( __( 'Destroy startup script' ) );
+            ])->log(__('Destroy startup script'));
 
             // redirect and flush session
-            return redirect('startup')->with( ['type' => 'success', 'message' => 'Startup script <strong>'.$request->scriptid.'</strong> removed' ]);
-
+            return redirect('startup')->with(['type' => 'success', 'message' => 'Startup script <strong>'.$request->scriptid.'</strong> removed']);
         } else {
-
-            if (preg_match( '/response:\s(.*)/i', $destroyRes['error'], $matches) ) {
-
-                return redirect('startup')->with( ['type' => 'error', 'message' => str_replace('response:', null, $matches[0] ) ] );
-
+            if (preg_match('/response:\s(.*)/i', $destroyRes['error'], $matches)) {
+                return redirect('startup')->with(['type' => 'error', 'message' => str_replace('response:', null, $matches[0])]);
             }
-
         }
 
-        return redirect('startup')->with( ['type' => 'error', 'message' => $destroyRes['error'] ] );
-
+        return redirect('startup')->with(['type' => 'error', 'message' => $destroyRes['error']]);
     }
-
 }

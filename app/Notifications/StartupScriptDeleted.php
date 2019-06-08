@@ -3,10 +3,9 @@
 namespace vultrui\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\SlackMessage;
+use Illuminate\Notifications\Notification;
 
 class StartupScriptDeleted extends Notification
 {
@@ -19,7 +18,7 @@ class StartupScriptDeleted extends Notification
      *
      * @return void
      */
-    public function __construct(  $startupscript_id )
+    public function __construct($startupscript_id)
     {
         $this->startupscript_id = $startupscript_id;
     }
@@ -27,7 +26,8 @@ class StartupScriptDeleted extends Notification
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return array
      */
     public function via($notifiable)
@@ -39,37 +39,35 @@ class StartupScriptDeleted extends Notification
      * Get the mail representation of the notification.
      *
      * @param  mixed  $notifiable
+     *
      * @return \Illuminate\Notifications\Messages\MailMessage
-     
-    public function toMail($notifiable)
+     *
+     * public function toMail($notifiable)
+     * {
+     * return (new MailMessage)
+     * ->line('The introduction to the notification.')
+     * ->action('Notification Action', url('/'))
+     * ->line('Thank you for using our application!');
+     * }
+     */
+    public function toSlack($notifiable)
     {
-        return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
-    }
-    */
-   
-   public function toSlack($notifiable)
-    {
-
-        return (new SlackMessage)
+        return (new SlackMessage())
                 ->warning()
-                ->content('Startup script (ID: '.$this->startupscript_id.') has been deleted - ('.$notifiable->slug().')' );
+                ->content('Startup script (ID: '.$this->startupscript_id.') has been deleted - ('.$notifiable->slug().')');
     }
-   
-
 
     /**
      * Get the array representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return array
      */
     public function toArray($notifiable)
     {
         return [
-            'startupscript_id' => $this->startupscript_id
+            'startupscript_id' => $this->startupscript_id,
         ];
     }
 }

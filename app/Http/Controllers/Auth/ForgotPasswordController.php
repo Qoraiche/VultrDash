@@ -2,8 +2,8 @@
 
 namespace vultrui\Http\Controllers\Auth;
 
-use vultrui\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use vultrui\Http\Controllers\Controller;
 
 class ForgotPasswordController extends Controller
 {

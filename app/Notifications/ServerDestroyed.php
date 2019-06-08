@@ -3,10 +3,9 @@
 namespace vultrui\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\SlackMessage;
+use Illuminate\Notifications\Notification;
 
 class ServerDestroyed extends Notification
 {
@@ -19,16 +18,16 @@ class ServerDestroyed extends Notification
      *
      * @return void
      */
-    public function __construct( $server_id )
+    public function __construct($server_id)
     {
         $this->server_id = $server_id;
-
     }
 
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return array
      */
     public function via($notifiable)
@@ -39,10 +38,11 @@ class ServerDestroyed extends Notification
     /**
      * Get the mail representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
-    /*    
+    /*
 
         public function toMail($notifiable){
             return (new MailMessage)
@@ -54,16 +54,16 @@ class ServerDestroyed extends Notification
 
     public function toSlack($notifiable)
     {
-
-        return (new SlackMessage)
+        return (new SlackMessage())
                 ->warning()
-                ->content('Server (ID: '.$this->server_id.') has been destroyed - ('.$notifiable->slug().')' );
+                ->content('Server (ID: '.$this->server_id.') has been destroyed - ('.$notifiable->slug().')');
     }
 
     /**
      * Get the array representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return array
      */
     public function toArray($notifiable)

@@ -3,15 +3,14 @@
 namespace vultrui\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\SlackMessage;
+use Illuminate\Notifications\Notification;
 
 class ServerDeployed extends Notification implements ShouldQueue
 {
     use Queueable;
-
 
     protected $server;
 
@@ -20,17 +19,16 @@ class ServerDeployed extends Notification implements ShouldQueue
      *
      * @return void
      */
-
-    public function __construct( $server )
+    public function __construct($server)
     {
         $this->server = $server;
-
     }
 
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return array
      */
     public function via($notifiable)
@@ -41,7 +39,8 @@ class ServerDeployed extends Notification implements ShouldQueue
     /**
      * Get the mail representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
@@ -52,27 +51,24 @@ class ServerDeployed extends Notification implements ShouldQueue
                     ->line('Thank you for using our application!');*/
     }
 
-
     public function toSlack($notifiable)
     {
-
-        return (new SlackMessage)
+        return (new SlackMessage())
                 ->success()
-                ->content('A new server deployed - ('.$notifiable->slug().')' )
+                ->content('A new server deployed - ('.$notifiable->slug().')')
                 ->attachment(function ($attachment) use ($notifiable) {
-                    $attachment->title('Server '. $this->server['SUBID'], url('/servers/'.$this->server['SUBID']))
-                               ->fields( $this->server );
+                    $attachment->title('Server '.$this->server['SUBID'], url('/servers/'.$this->server['SUBID']))
+                               ->fields($this->server);
                 });
-
     }
 
     /**
      * Get the array representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return array
      */
-    
     public function toArray($notifiable)
     {
         return $this->server;

@@ -10,7 +10,7 @@ return [
 
     'thread_model' => Cmgmyr\Messenger\Models\Thread::class,
 
-    /**
+    /*
      * Define custom database table names - without prefixes.
      */
     'messages_table' => null,

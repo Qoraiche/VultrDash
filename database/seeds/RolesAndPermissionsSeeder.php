@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class RolesAndPermissionsSeeder extends Seeder
 {
@@ -24,12 +24,12 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::create(['name' => 'manage ips']);
         Permission::create(['name' => 'manage firewalls']);
         Permission::create(['name' => 'manage networks']);
-        
+
         /* Permission::create(['name' => 'view dashboard']); */
 
         // create role and assign created permissions
 
         $role = Role::create(['name' => 'super-admin']);
-        $role->givePermissionTo( Permission::all() );
+        $role->givePermissionTo(Permission::all());
     }
 }
