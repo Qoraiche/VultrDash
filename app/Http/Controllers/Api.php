@@ -3,36 +3,32 @@
 
 namespace vultrui\Http\Controllers;
 
-use vultrui\VultrLib\Server;
 use vultrui\VultrLib\Plan;
 use vultrui\VultrLib\Region;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Http\Request;
+use vultrui\VultrLib\Server;
 
 class Api extends Controller
 {
+    protected $vultr;
 
-	protected $vultr;
-	
-	protected $plan;
+    protected $plan;
 
-	protected $region;
+    protected $region;
 
-	public function __construct(Server $vultr, Plan $plan, Region $region)
-	{
-		$this->vultr  =  $vultr;
-		$this->plan   =  $plan;
-		$this->region =  $region;
-	}
-
-	public function getPlans(){
-
-		return response()->json( $this->plan->list() );
-	}
-
-	public function getRegions(){
-
-    	return response()->json( $this->region->list() );
+    public function __construct(Server $vultr, Plan $plan, Region $region)
+    {
+        $this->vultr = $vultr;
+        $this->plan = $plan;
+        $this->region = $region;
     }
 
+    public function getPlans()
+    {
+        return response()->json($this->plan->list());
+    }
+
+    public function getRegions()
+    {
+        return response()->json($this->region->list());
+    }
 }

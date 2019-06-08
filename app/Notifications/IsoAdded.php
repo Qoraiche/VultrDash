@@ -3,15 +3,13 @@
 namespace vultrui\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\SlackMessage;
+use Illuminate\Notifications\Notification;
 
 class IsoAdded extends Notification
 {
     use Queueable;
-
 
     protected $iso;
 
@@ -20,7 +18,7 @@ class IsoAdded extends Notification
      *
      * @return void
      */
-    public function __construct( $iso )
+    public function __construct($iso)
     {
         $this->iso = $iso;
     }
@@ -28,7 +26,8 @@ class IsoAdded extends Notification
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return array
      */
     public function via($notifiable)
@@ -40,34 +39,33 @@ class IsoAdded extends Notification
      * Get the mail representation of the notification.
      *
      * @param  mixed  $notifiable
+     *
      * @return \Illuminate\Notifications\Messages\MailMessage
-     
-    public function toMail($notifiable)
+     *
+     * public function toMail($notifiable)
+     * {
+     * return (new MailMessage)
+     * ->line('The introduction to the notification.')
+     * ->action('Notification Action', url('/'))
+     * ->line('Thank you for using our application!');
+     * }
+     */
+    public function toSlack($notifiable)
     {
-        return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
-    }
-    */
-   
-   public function toSlack($notifiable)
-    {
-
-        return (new SlackMessage)
+        return (new SlackMessage())
                 ->success()
-                ->content('A new ISO added - ('.$notifiable->slug().')' )
+                ->content('A new ISO added - ('.$notifiable->slug().')')
                 ->attachment(function ($attachment) {
-                    $attachment->title( 'ISO '. $this->iso['ISOID'] )
-                               ->fields( $this->iso );
+                    $attachment->title('ISO '.$this->iso['ISOID'])
+                               ->fields($this->iso);
                 });
-
     }
 
     /**
      * Get the array representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return array
      */
     public function toArray($notifiable)

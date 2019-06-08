@@ -15,9 +15,9 @@ use Faker\Generator as Faker;
 
 $factory->define(vultrui\User::class, function (Faker $faker) {
     return [
-        'firstname' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'password' => bcrypt('secret'), // secret
+        'firstname'      => $faker->name,
+        'email'          => $faker->unique()->safeEmail,
+        'password'       => bcrypt('secret'), // secret
         'remember_token' => str_random(10),
     ];
 });

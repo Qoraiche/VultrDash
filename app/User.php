@@ -2,11 +2,10 @@
 
 namespace vultrui;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Spatie\Permission\Traits\HasRoles;
 use Cmgmyr\Messenger\Traits\Messagable;
-
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
@@ -19,7 +18,6 @@ class User extends Authenticatable
      *
      * @var array
      */
-    
     protected $fillable = [
         'firstname', 'lastname', 'email', 'password', 'country',
     ];
@@ -33,42 +31,33 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-
-    public function prefer_slack(){
-
-        if ( config('app.slack_webhook_url') !== FALSE && config('app.slack_webhook_url') !== '' )
-        {
-            
+    public function prefer_slack()
+    {
+        if (config('app.slack_webhook_url') !== false && config('app.slack_webhook_url') !== '') {
             return true;
         }
 
         return false;
     }
 
-    public function slug(){
-
-       return ( $this->firstname === '' || $this->lastname === '' ) ? $this->emailSlug() : ucwords( $this->firstname.' '.$this->lastname );
+    public function slug()
+    {
+        return ($this->firstname === '' || $this->lastname === '') ? $this->emailSlug() : ucwords($this->firstname.' '.$this->lastname);
     }
 
-    public function emailSlug(){
+    public function emailSlug()
+    {
+        $emailSlug = preg_match("/^(?P<slug>([A-Z|a-z|0-9](\.|_){0,1})+[A-Z|a-z|0-9])\@([A-Z|a-z|0-9])+((\.){0,1}[A-Z|a-z|0-9]){2}\.[a-z]{2,3}$/m", $this->email, $slug);
 
-        $emailSlug = preg_match( "/^(?P<slug>([A-Z|a-z|0-9](\.|_){0,1})+[A-Z|a-z|0-9])\@([A-Z|a-z|0-9])+((\.){0,1}[A-Z|a-z|0-9]){2}\.[a-z]{2,3}$/m", $this->email, $slug);
-
-        if ( $emailSlug )
-        {
-
+        if ($emailSlug) {
             return '@'.$slug['slug'];
         }
 
         return $this->email;
     }
 
-
-    public function routeNotificationForSlack() {
-
+    public function routeNotificationForSlack()
+    {
         return config('app.slack_webhook_url');
-
     }
-
-
 }

@@ -2,8 +2,8 @@
 
 namespace vultrui\Http\Controllers\Auth;
 
-use vultrui\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use vultrui\Http\Controllers\Controller;
 
 class LoginController extends Controller
 {
@@ -25,7 +25,6 @@ class LoginController extends Controller
      *
      * @var string
      */
-    
     protected $redirectTo = '/';
 
     /**
@@ -33,8 +32,6 @@ class LoginController extends Controller
      *
      * @return void
      */
-
-
     public function __construct()
     {
         $this->middleware('guest')->except('logout');

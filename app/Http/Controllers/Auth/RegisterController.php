@@ -2,11 +2,11 @@
 
 namespace vultrui\Http\Controllers\Auth;
 
-use vultrui\User;
-use vultrui\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use vultrui\Http\Controllers\Controller;
+use vultrui\User;
 
 class RegisterController extends Controller
 {
@@ -42,10 +42,10 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
-        return redirect( $this->redirectTo );
+        return redirect($this->redirectTo);
     }
 
-    /**
+    /*
      * Get a validator for an incoming registration request.
      *
      * @param  array  $data
@@ -59,7 +59,7 @@ class RegisterController extends Controller
         ]);
     }*/
 
-    /**
+    /*
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data

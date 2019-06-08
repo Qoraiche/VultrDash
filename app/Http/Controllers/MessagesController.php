@@ -2,16 +2,15 @@
 
 namespace vultrui\Http\Controllers;
 
-use vultrui\User;
 use Carbon\Carbon;
 use Cmgmyr\Messenger\Models\Message;
 use Cmgmyr\Messenger\Models\Participant;
 use Cmgmyr\Messenger\Models\Thread;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Http\Request;
+use vultrui\User;
 
 class MessagesController extends Controller
 {
@@ -30,6 +29,7 @@ class MessagesController extends Controller
      * Shows a message thread.
      *
      * @param $id
+     *
      * @return mixed
      */
     public function show($id)
@@ -37,7 +37,8 @@ class MessagesController extends Controller
         try {
             $thread = Thread::findOrFail($id);
         } catch (ModelNotFoundException $e) {
-            Session::flash('error_message', 'The thread with ID: ' . $id . ' was not found.');
+            Session::flash('error_message', 'The thread with ID: '.$id.' was not found.');
+
             return redirect()->route('messages');
         }
         // show current user in list if not a current participant
@@ -46,6 +47,7 @@ class MessagesController extends Controller
         $userId = Auth::id();
         $users = User::whereNotIn('id', $thread->participantsUserIds($userId))->get();
         $thread->markAsRead($userId);
+
         return view('modals.messanger.show', compact('thread', 'users'));
     }
 
@@ -57,6 +59,7 @@ class MessagesController extends Controller
     public function create()
     {
         $users = User::where('id', '!=', Auth::id())->get();
+
         return view('modals.messanger.create', compact('users'));
     }
 
@@ -74,19 +77,20 @@ class MessagesController extends Controller
         // Message
         Message::create([
             'thread_id' => $thread->id,
-            'user_id' => Auth::id(),
-            'body' => $input['message'],
+            'user_id'   => Auth::id(),
+            'body'      => $input['message'],
         ]);
         // Sender
         Participant::create([
             'thread_id' => $thread->id,
-            'user_id' => Auth::id(),
-            'last_read' => new Carbon,
+            'user_id'   => Auth::id(),
+            'last_read' => new Carbon(),
         ]);
         // Recipients
         if (Input::has('recipients')) {
             $thread->addParticipant($input['recipients']);
         }
+
         return redirect()->route('messages');
     }
 
@@ -94,6 +98,7 @@ class MessagesController extends Controller
      * Adds a new message to a current thread.
      *
      * @param $id
+     *
      * @return mixed
      */
     public function update($id)
@@ -101,28 +106,29 @@ class MessagesController extends Controller
         try {
             $thread = Thread::findOrFail($id);
         } catch (ModelNotFoundException $e) {
-            Session::flash('error_message', 'The thread with ID: ' . $id . ' was not found.');
+            Session::flash('error_message', 'The thread with ID: '.$id.' was not found.');
+
             return redirect()->route('messages');
         }
         $thread->activateAllParticipants();
         // Message
         Message::create([
             'thread_id' => $thread->id,
-            'user_id' => Auth::id(),
-            'body' => Input::get('message'),
+            'user_id'   => Auth::id(),
+            'body'      => Input::get('message'),
         ]);
         // Add replier as a participant
         $participant = Participant::firstOrCreate([
             'thread_id' => $thread->id,
-            'user_id' => Auth::id(),
+            'user_id'   => Auth::id(),
         ]);
-        $participant->last_read = new Carbon;
+        $participant->last_read = new Carbon();
         $participant->save();
         // Recipients
         if (Input::has('recipients')) {
             $thread->addParticipant(Input::get('recipients'));
         }
+
         return redirect()->route('messages.show', $id);
     }
-
 }

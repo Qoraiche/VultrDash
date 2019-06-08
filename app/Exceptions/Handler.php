@@ -21,7 +21,6 @@ class Handler extends ExceptionHandler
      *
      * @var array
      */
-    
     protected $dontFlash = [
         'password',
         'password_confirmation',
@@ -30,10 +29,10 @@ class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      *
-     * @param  \Exception  $exception
+     * @param \Exception $exception
+     *
      * @return void
      */
-    
     public function report(Exception $exception)
     {
         parent::report($exception);
@@ -42,23 +41,20 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
+     * @param \Illuminate\Http\Request $request
+     * @param \Exception               $exception
+     *
      * @return \Illuminate\Http\Response
      */
     public function render($request, Exception $exception)
     {
-
-        if ( $exception instanceof TokenMismatchException ) {
-
+        if ($exception instanceof TokenMismatchException) {
             return redirect('/login')->with('message', 'Your session expired');
         }
 
-        if ( $exception instanceof \Spatie\Permission\Exceptions\UnauthorizedException ) {
-
-            return redirect()->route('home')->with('error' , 'You don\'t have a permission to perform this action');
+        if ($exception instanceof \Spatie\Permission\Exceptions\UnauthorizedException) {
+            return redirect()->route('home')->with('error', 'You don\'t have a permission to perform this action');
         }
-
 
         return parent::render($request, $exception);
     }

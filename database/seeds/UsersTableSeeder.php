@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use Carbon\Carbon;
+use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
 {
@@ -13,15 +13,14 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'firstname' => '',
-            'lastname' => '',
-            'country' => '',
-            'email' => 'admin@example.com',
-            'password' => bcrypt('admin'),
+            'firstname'      => '',
+            'lastname'       => '',
+            'country'        => '',
+            'email'          => 'admin@example.com',
+            'password'       => bcrypt('admin'),
             'remember_token' => str_random(10),
-            'created_at' => Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon::now()->toDateTimeString()
+            'created_at'     => Carbon::now()->toDateTimeString(),
+            'updated_at'     => Carbon::now()->toDateTimeString(),
         ]);
-
     }
 }

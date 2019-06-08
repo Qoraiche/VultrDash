@@ -3,10 +3,9 @@
 namespace vultrui\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\SlackMessage;
+use Illuminate\Notifications\Notification;
 
 class DnsDeleted extends Notification
 {
@@ -19,7 +18,7 @@ class DnsDeleted extends Notification
      *
      * @return void
      */
-    public function __construct( $dns_id )
+    public function __construct($dns_id)
     {
         $this->dns_id = $dns_id;
     }
@@ -27,7 +26,8 @@ class DnsDeleted extends Notification
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return array
      */
     public function via($notifiable)
@@ -38,37 +38,36 @@ class DnsDeleted extends Notification
     /**
      * Get the mail representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
+        return (new MailMessage())
                     ->line('The introduction to the notification.')
                     ->action('Notification Action', url('/'))
                     ->line('Thank you for using our application!');
     }
 
-
     public function toSlack($notifiable)
     {
-
-        return (new SlackMessage)
+        return (new SlackMessage())
                 ->warning()
-                ->content('DNS (Domain: '.$this->dns_id.') has been deleted - ('.$notifiable->slug().')' );
-
+                ->content('DNS (Domain: '.$this->dns_id.') has been deleted - ('.$notifiable->slug().')');
     }
 
     /**
      * Get the array representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return array
      */
     public function toArray($notifiable)
     {
         return [
-            'domain' => $this->dns_id
+            'domain' => $this->dns_id,
         ];
     }
 }

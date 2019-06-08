@@ -2,8 +2,8 @@
 
 namespace vultrui\Http\Controllers\Auth;
 
-use vultrui\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use vultrui\Http\Controllers\Controller;
 
 class ResetPasswordController extends Controller
 {
